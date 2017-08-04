@@ -34,11 +34,16 @@ MonoBehaviour:
     baseValue: 5
     min: 0
     max: 50
+    statModifiers: []
+  - valueType: 2
+    baseValue: 5
+    min: 0
+    max: 50
     statModifiers:
     - statModifierType: 2
       modifierFactorAttributes:
-        count: 0
+        count: 5
         inverse: 0
         duration: 0
       statValueType: 1
-      value: 1
+      value: 3

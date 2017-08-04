@@ -18,7 +18,7 @@ public enum StatType {
 public enum StatModifierType {
 	HealthRatio,
 	DurationRatio,
-	DamageCounter
+	Counter
 }
 
 public enum EventType {

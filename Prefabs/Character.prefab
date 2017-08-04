@@ -22,10 +22,11 @@ GameObject:
   - component: {fileID: 114984895425051840}
   - component: {fileID: 114221605970152374}
   - component: {fileID: 212248933206156588}
-  - component: {fileID: 50642135406718618}
+  - component: {fileID: 114445813195043352}
+  - component: {fileID: 61203809459089810}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,26 +44,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50642135406718618
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!61 &61203809459089810
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064014530158482}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.4575, y: 0.6875}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4575, y: 0.6875}
+  m_EdgeRadius: 0
 --- !u!114 &114221605970152374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,6 +80,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3859fc0eab87c499a38f865ca624f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114445813195043352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064014530158482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde9b17f0d0800048bdd8ee951025ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 1746969963390770, guid: 06d936e162115e3419f140b93f88ed00, type: 2}
 --- !u!114 &114984895425051840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95e1c9a92d7eea4d891a307fa0756ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 8cc9b8df536d9fd48b0a769648fba9a8, type: 2}
+  _data: {fileID: 11400000, guid: 8cc9b8df536d9fd48b0a769648fba9a8, type: 2}
 --- !u!212 &212248933206156588
 SpriteRenderer:
   m_ObjectHideFlags: 1
