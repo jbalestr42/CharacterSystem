@@ -11,22 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4069db9c736168f4ab52eb54a85321f9, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  _movementType: 0
+  _movementType: 1
   _stats:
-  - valueType: 1
-    baseValue: 0
+  - valueType: 3
+    baseValue: 2
     min: 0
-    max: 0
-    statModifiers:
-    - statModifierType: 0
-      modifierFactorAttributes:
-        count: 0
-        inverse: 0
-        duration: 0
-      statValueType: 0
-      value: 0
+    max: 5
+    statModifiers: []
   - valueType: 0
     baseValue: 10
     min: 0
     max: 100
+    statModifiers: []
+  - valueType: 1
+    baseValue: 1
+    min: 0
+    max: 2
     statModifiers: []

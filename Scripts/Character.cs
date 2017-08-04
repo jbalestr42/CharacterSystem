@@ -35,8 +35,8 @@ public class Character : MonoBehaviour, IKillable, IPlayerObservable {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown("space"))
-			TriggerEvent(EventType.OnGetDamaged, gameObject);
+		//if (Input.GetKeyDown("space"))
+		//	TriggerEvent(EventType.OnGetDamaged, gameObject);
 	}
 
 	public void Suscribe(EventType p_eventType, OnCharacterEventDelegate p_delegate) {
@@ -78,6 +78,11 @@ public class Character : MonoBehaviour, IKillable, IPlayerObservable {
 	public virtual void Die() {
 		Debug.Log("Character is dead :(");
 		TriggerEvent(EventType.OnDie, gameObject);
+	}
+
+	public GameObject GetTarget() {
+		// TODO get the nearest ? target // implement a strategy to get the good target
+		return GameObject.Find("Enemy");
 	}
 
 	public Stat GetStat(StatType p_statType) {

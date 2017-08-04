@@ -8,9 +8,17 @@ public abstract class ARequirement {
 
 public class InputReq : ARequirement {
 
+	string _key;
+
+	public InputReq(string p_key) {
+		_key = p_key;
+	}
+
 	public override bool IsValid(Character p_owner) {
-		//if (p_owner.GetInput("space").IsKeyPress())
-		return true;
+		if (Input.GetKey(_key)) {	
+			return true;
+		}
+		return false;
 	}
 }
 
