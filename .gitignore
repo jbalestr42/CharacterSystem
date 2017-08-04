@@ -5,6 +5,9 @@
 /[Bb]uilds/
 /Assets/AssetStoreTools*
 
+# This project is sused as a submodule
+ProjectSettings/
+
 # Visual Studio 2015 cache directory
 /.vs/
 
