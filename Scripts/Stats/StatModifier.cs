@@ -26,8 +26,8 @@ public class StatModifier {
 			modifierFactor = new DurationRatio();
 			break;
 
-		case StatModifierType.DamageCounter:
-			modifierFactor = new DamageCounter();
+		case StatModifierType.Counter:
+			modifierFactor = new Counter();
 			break;
 
 		default:
@@ -41,7 +41,12 @@ public class StatModifier {
 	public void Apply(Stat p_stat, GameObject p_character) {
 		float factor = _modifierFactor.GetFactor(p_character);
 		p_stat.Add(_statValueType, _value * factor);
-    }
+	}
+
+	public void OnRemoved(GameObject p_owner) {
+		if (_modifierFactor != null)
+			_modifierFactor.OnRemoved(p_owner);
+	}
 
     public bool IsOver() {
         if (_modifierFactor != null)

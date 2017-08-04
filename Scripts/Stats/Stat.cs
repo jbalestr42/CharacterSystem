@@ -17,16 +17,16 @@ public class Stat
         _values.Add(StatValueType.Min, p_min);
         _values.Add(StatValueType.Max, p_max);
         _modifiers = new List<StatModifier>();
-        computeTotal();
+        ComputeTotal();
     }
 
 	public void Update(GameObject p_owner) {
-        reset();
+		Reset();
         UpdateModifier(p_owner);
-        computeTotal();
+		ComputeTotal();
     }
 
-    void reset() {
+    void Reset() {
         _values[StatValueType.RelativeBonus] = 0;
         _values[StatValueType.AbsoluteBonus] = 0;
     }
@@ -36,12 +36,13 @@ public class Stat
             _modifiers[i].Apply(this, p_owner);
 			if (_modifiers[i].IsOver()) {
 				// TODO add a method in modifiers OnRemove, to clean stuff like remove events from characters
+				_modifiers[i].OnRemoved(p_owner);
 				_modifiers.RemoveAt(i);
 			}
         }
     }
 
-    void computeTotal() {
+	void ComputeTotal() {
         _total = (_values[StatValueType.Base] + _values[StatValueType.AbsoluteBonus]) * (1f + _values[StatValueType.RelativeBonus]);
         _total = Mathf.Clamp(_total, _values[StatValueType.Min], _values[StatValueType.Max]);
     }

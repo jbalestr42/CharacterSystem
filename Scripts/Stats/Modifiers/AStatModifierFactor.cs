@@ -22,6 +22,8 @@ public abstract class AStatModifierFactor {
 		return false;
 	}
 
+	public virtual void OnRemoved(GameObject p_owner) { }
+
 	public abstract float GetFactor(GameObject p_character);
 
 }

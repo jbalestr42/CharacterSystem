@@ -36,8 +36,8 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	}
 
 	void Update() {
-		//if (Input.GetKeyDown("space"))
-		//	TriggerEvent(EventType.OnGetDamaged, gameObject);
+		if (Input.GetKeyDown("space"))
+			TriggerEvent(EventType.OnGetDamaged, gameObject);
 	}
 
 	public void Suscribe(EventType p_eventType, OnCharacterEventDelegate p_delegate) {
