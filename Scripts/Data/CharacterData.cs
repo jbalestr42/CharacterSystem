@@ -23,8 +23,8 @@ public class CharacterData : ScriptableObject
 		public List<StatModifierData> statModifiers;
     }
 
-	public MovementType m_movementType;
-	public List<StatData> m_stats;
+	public MovementType _movementType;
+	public List<StatData> _stats;
 
 	[UnityEditor.MenuItem("Assets/Create/CharacterData")]
 	public static void CreateAsset()
