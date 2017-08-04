@@ -40,7 +40,7 @@ public class StatModifier {
 
 	public void Apply(Stat p_stat, GameObject p_character) {
 		float factor = _modifierFactor.GetFactor(p_character);
-		p_stat.add(_statValueType, _value * factor);
+		p_stat.Add(_statValueType, _value * factor);
     }
 
     public bool IsOver() {

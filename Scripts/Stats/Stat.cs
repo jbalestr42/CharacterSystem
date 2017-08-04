@@ -35,6 +35,7 @@ public class Stat
         for (int i = _modifiers.Count - 1; i >= 0; i--) {
             _modifiers[i].Apply(this, p_owner);
 			if (_modifiers[i].IsOver()) {
+				// TODO add a method in modifiers OnRemove, to clean stuff like remove events from characters
 				_modifiers.RemoveAt(i);
 			}
         }
@@ -49,13 +50,13 @@ public class Stat
         get { return _total; }
     }
 
-    public void add(StatValueType p_type, float p_value) {
+    public void Add(StatValueType p_type, float p_value) {
 		if (_values.ContainsKey(p_type)) {
 			_values[p_type] += p_value;
 		}
     }
 
-    public float getValue(StatValueType p_type) {
+    public float GetValue(StatValueType p_type) {
         return _values[p_type];
     }
 

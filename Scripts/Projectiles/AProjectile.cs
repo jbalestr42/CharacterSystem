@@ -14,5 +14,11 @@ public abstract class AProjectile : MonoBehaviour {
 		_owner = p_owner;
 	}
 
+	void OnTriggerEnter2D(Collider2D p_collider) {
+		Debug.Log("Trigger");
+		OnHit(_owner, p_collider);
+	}
+
+	public abstract void OnHit(Character p_owner, Collider2D p_collider);
 	public abstract void UpdateMovement(Character p_owner);
 }

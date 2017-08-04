@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(StatManager))]
-public class Character : MonoBehaviour, IKillable, IPlayerObservable {
+public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 
 	public delegate void OnCharacterEventDelegate(GameObject p_owner);
+
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
 	public CharacterData _data;
 	ResourceStat _health;
 
-    StatManager _statManager;
+	StatManager _statManager;
 
 	bool _canUseSkill = true;
 
@@ -34,7 +35,7 @@ public class Character : MonoBehaviour, IKillable, IPlayerObservable {
 		_health.Init(GetStat(StatType.HealthMax), GetStat(StatType.HealthRegen));
 	}
 
-	void Update () {
+	void Update() {
 		//if (Input.GetKeyDown("space"))
 		//	TriggerEvent(EventType.OnGetDamaged, gameObject);
 	}
@@ -59,15 +60,15 @@ public class Character : MonoBehaviour, IKillable, IPlayerObservable {
 
 	private void TriggerEvent(EventType p_eventType, GameObject p_gameObject) {
 		if (_events.ContainsKey(p_eventType) && _events[p_eventType] != null) {
-			_events [p_eventType] (p_gameObject);
+			_events[p_eventType](p_gameObject);
 		}
 	}
 
-	public virtual void GetDamage(GameObject p_owner) {
-		Health.Add(-p_owner.GetComponent<Character>().GetStat(StatType.Damage).Total);
+	public virtual void GetDamage(GameObject p_owner, float p_damage) {
+		Health.Add(-p_damage);
 		TriggerEvent(EventType.OnGetDamaged, p_owner);
 		if (IsDead()) {
-			Die ();
+			Die();
 		}
 	}
 
