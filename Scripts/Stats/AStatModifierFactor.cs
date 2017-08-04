@@ -12,10 +12,10 @@ public abstract class AStatModifierFactor {
 		public float duration;
 	}
 
-	protected Attribute m_attributes;
+	protected Attribute _attributes;
 
 	public virtual void Init(Character p_owner, Attribute p_attribute) {
-		m_attributes = p_attribute;
+		_attributes = p_attribute;
 	}
 
 	public virtual bool IsOver() {
@@ -30,7 +30,7 @@ public class HealthRatio : AStatModifierFactor {
 
 	public override float GetFactor(GameObject p_owner) {
 		float factor = p_owner.GetComponent<Character>().Health.GetRatio();
-		if (m_attributes.inverse) {
+		if (_attributes.inverse) {
 			return 1.0f - factor;
 		}
 		return factor;
@@ -39,20 +39,20 @@ public class HealthRatio : AStatModifierFactor {
 
 public class DurationRatio : AStatModifierFactor {
 
-	float m_endOfEffect;
+	float _endOfEffect;
 
 	public override void Init(Character p_owner, Attribute p_attribute) {
-		m_attributes = p_attribute;
-		m_endOfEffect = Time.realtimeSinceStartup + m_attributes.duration;
+		_attributes = p_attribute;
+		_endOfEffect = Time.realtimeSinceStartup + _attributes.duration;
 	}
 
 	public override bool IsOver() {
-		return (m_endOfEffect - Time.realtimeSinceStartup) <= 0.0f;
+		return (_endOfEffect - Time.realtimeSinceStartup) <= 0.0f;
 	}
 
 	public override float GetFactor(GameObject p_owner) {
-		float factor = Mathf.Clamp((m_endOfEffect - Time.realtimeSinceStartup) / m_attributes.duration, 0.0f, 1.0f);
-		if (m_attributes.inverse) {
+		float factor = Mathf.Clamp((_endOfEffect - Time.realtimeSinceStartup) / _attributes.duration, 0.0f, 1.0f);
+		if (_attributes.inverse) {
 			return (1 - factor);
 		}
 		return (factor);
@@ -61,20 +61,20 @@ public class DurationRatio : AStatModifierFactor {
 
 public class DamageCounter : AStatModifierFactor {
 
-	int m_damageCount;
+	int _damageCount;
 
 	public override void Init(Character p_owner, Attribute p_attribute) {
-		m_damageCount = 0;
-		m_attributes = p_attribute;
+		_damageCount = 0;
+		_attributes = p_attribute;
 		p_owner.Suscribe(EventType.OnGetDamaged, OnGetDamaged);
 	}
 
 	public override float GetFactor(GameObject p_character) {
-		return (m_damageCount);
+		return (_damageCount);
 	}
 
 	public void OnGetDamaged(GameObject p_owner) {
-		m_damageCount++;
+		_damageCount++;
 	}
 }
 
@@ -83,7 +83,7 @@ public class DamageCounter : AStatModifierFactor {
 public class InRange : AStatModifierFactor {
 	
     public override float GetFactor(GameObject p_character) {
-        return 12;//p_character.GetComponent<Characher>().GetInRange(m_tag);
+        return 12;//p_character.GetComponent<Characher>().GetInRange(_tag);
     }
 }
 */

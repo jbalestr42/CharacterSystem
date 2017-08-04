@@ -3,18 +3,18 @@ using System.Collections;
 
 public abstract class Movement : MonoBehaviour {
 
-	Stat m_speed;
+	Stat _speed;
 
 	void Update() {
 		UpdateMovement();
 	}
 
 	public Stat Speed {
-		get { return m_speed; }
+		get { return _speed; }
 	}
 
 	public virtual void Init(Stat p_speed) {
-		m_speed = p_speed;
+		_speed = p_speed;
 	}
 
 	public abstract void UpdateMovement();

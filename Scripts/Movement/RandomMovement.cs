@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RandomMovement : Movement
 {
-    Vector2 m_direction;
+    Vector2 _direction;
 
 	public override void Init(Stat p_speed)
     {
@@ -13,7 +13,7 @@ public class RandomMovement : Movement
 
 	public override void UpdateMovement()
     {
-        transform.Translate(m_direction * Time.deltaTime * Speed.Total);
+        transform.Translate(_direction * Time.deltaTime * Speed.Total);
     }
 
     IEnumerator ChangeDirection()
@@ -21,8 +21,8 @@ public class RandomMovement : Movement
         while (gameObject != null && gameObject.activeInHierarchy)
         {
             yield return new WaitForSeconds(1f);
-            m_direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            m_direction.Normalize();
+            _direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            _direction.Normalize();
         }
     }
 }

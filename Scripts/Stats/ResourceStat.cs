@@ -3,44 +3,44 @@ using System.Collections;
 
 public class ResourceStat : MonoBehaviour
 {
-    Stat m_max;
-    Stat m_regen;
-    public float m_value;
-    public float m_regenRate;
+    Stat _max;
+    Stat _regen;
+    public float _value;
+    public float _regenRate;
 
     void Start() {
-        m_regenRate = 1f;
+        _regenRate = 1f;
     }
 
     public void Init(Stat p_max, Stat p_regen) {
-        m_max = p_max;
-        m_regen = p_regen;
-        m_value = m_max.Total;
+        _max = p_max;
+        _regen = p_regen;
+        _value = _max.Total;
 		StartCoroutine(Regen());
     }
 
     IEnumerator Regen() {
         while (gameObject != null && gameObject.activeInHierarchy) {
-            yield return new WaitForSeconds(m_regenRate);
-            Add(m_regen.Total);
+            yield return new WaitForSeconds(_regenRate);
+            Add(_regen.Total);
         }
         Debug.Log("Stop the regen coroutine");
 	}
 
 	public bool IsEmpty() {
-		return m_value == 0f;
+		return _value == 0f;
 	}
 
 	public float GetRatio() {
-		return m_value / m_max.Total;
+		return _value / _max.Total;
 	}
 
 	public void Add(float p_value) {
-		m_value += p_value;
-		m_value = Mathf.Clamp(m_value, 0f, m_max.Total);
+		_value += p_value;
+		_value = Mathf.Clamp(_value, 0f, _max.Total);
 	}
 
     public float Value {
-		get { return m_value; }
+		get { return _value; }
     }
 }
