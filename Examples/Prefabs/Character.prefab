@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4802056592616354}
-  - component: {fileID: 114984895425051840}
-  - component: {fileID: 114221605970152374}
   - component: {fileID: 212248933206156588}
-  - component: {fileID: 114445813195043352}
   - component: {fileID: 61203809459089810}
+  - component: {fileID: 114539310002632402}
+  - component: {fileID: 114158460996393512}
+  - component: {fileID: 114865308357678878}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -69,7 +69,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4575, y: 0.6875}
   m_EdgeRadius: 0
---- !u!114 &114221605970152374
+--- !u!114 &114158460996393512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064014530158482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7f921afb42c7d4586607a84f82b6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114539310002632402
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -80,19 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3859fc0eab87c499a38f865ca624f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114445813195043352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1064014530158482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fde9b17f0d0800048bdd8ee951025ac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bullet: {fileID: 1746969963390770, guid: 06d936e162115e3419f140b93f88ed00, type: 2}
---- !u!114 &114984895425051840
+--- !u!114 &114865308357678878
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -103,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95e1c9a92d7eea4d891a307fa0756ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 8cc9b8df536d9fd48b0a769648fba9a8, type: 2}
+  _data: {fileID: 0}
 --- !u!212 &212248933206156588
 SpriteRenderer:
   m_ObjectHideFlags: 1

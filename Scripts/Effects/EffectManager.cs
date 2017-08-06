@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour {
 
+	//TODO utiliser un dico avec comme clé le type d'effet (Good, Bad, Neutre)
 	List<AEffect> _effects;
 
 	void Start() {
-		// Init the effect with SO
 		_effects = new List<AEffect>();
 	}
 	

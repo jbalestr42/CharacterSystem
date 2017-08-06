@@ -108,7 +108,7 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &131901113
+--- !u!1001 &451683802
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -145,25 +145,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4802056592616354, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1064014530158482, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 114984895425051840, guid: 23baee53f1b5bfd4b8fb0364e097e197,
+    - target: {fileID: 114865308357678878, guid: 23baee53f1b5bfd4b8fb0364e097e197,
         type: 2}
       propertyPath: _data
       value: 
-      objectReference: {fileID: 11400000, guid: 742e985aa7d10524d89b525a4c8c9b8c,
+      objectReference: {fileID: 11400000, guid: 8cc9b8df536d9fd48b0a769648fba9a8,
         type: 2}
-    - target: {fileID: 61203809459089810, guid: 23baee53f1b5bfd4b8fb0364e097e197,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114445813195043352, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &548637850
@@ -255,7 +245,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1522705146
+--- !u!1 &727721863 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1064014530158482, guid: 23baee53f1b5bfd4b8fb0364e097e197,
+    type: 2}
+  m_PrefabInternal: {fileID: 451683802}
+--- !u!114 &727721864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 727721863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde9b17f0d0800048bdd8ee951025ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 1746969963390770, guid: 06d936e162115e3419f140b93f88ed00, type: 2}
+--- !u!114 &727721871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 727721863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54932bbd667cb424bab19f8812a730b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1675180482
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -292,13 +310,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4802056592616354, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 61203809459089810, guid: 23baee53f1b5bfd4b8fb0364e097e197,
+    - target: {fileID: 1064014530158482, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114865308357678878, guid: 23baee53f1b5bfd4b8fb0364e097e197,
         type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: _data
+      value: 
+      objectReference: {fileID: 11400000, guid: 742e985aa7d10524d89b525a4c8c9b8c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
   m_IsPrefabParent: 0

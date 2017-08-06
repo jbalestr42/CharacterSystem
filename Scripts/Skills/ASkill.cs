@@ -61,32 +61,3 @@ public abstract class ASkill : MonoBehaviour {
 
 	public abstract void Cast(Character p_owner);
 }
-
-
-/*
-public class DirectionalBullet : ASkill {
-
-	// prefab
-	public Bullet _bullet; // Mouffy
-	Vector3 _direction;
-
-	public override void Cast(GameObject p_owner) {
-		Bullet bullet = Instantiate(_bullet);
-		_direction = (p_owner.GetMousePosition() - p_owner.transform.position).Normalize();
-	}
-
-	void Update() {
-		if (_target != null) {
-			_bullet.transform.position += _direction * Time.deltaTime;
-		}
-	}
-}
-
-
-public class Silence : ASkill {
-
-	public override void Cast(GameObject p_owner) {
-		// déclenche l'effet visuel
-		p_owner.GetTarget().AddDebuff(new SilenceBuff());
-	}
-}*/

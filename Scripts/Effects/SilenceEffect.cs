@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SilenceEffect : AEffect {
 
-	public SilenceEffect()
-		:base(2.0f) {
+	public SilenceEffect(float _duration)
+		:base(_duration) {
 	}
 
-	public override void OnEffectStart(GameObject p_target) {
+	public override void OnEffectStart(GameObject p_target) {	
 		p_target.GetComponent<Character>().CanUseSkill = false;
 	}
 

@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Stat
-{
+public class Stat {
+
 	// TODO use vector instead of dictionnary with enum as index
     private Dictionary<StatValueType, float> _values;
     private List<StatModifier> _modifiers;
@@ -35,7 +35,6 @@ public class Stat
         for (int i = _modifiers.Count - 1; i >= 0; i--) {
             _modifiers[i].Apply(this, p_owner);
 			if (_modifiers[i].IsOver()) {
-				// TODO add a method in modifiers OnRemove, to clean stuff like remove events from characters
 				_modifiers[i].OnRemoved(p_owner);
 				_modifiers.RemoveAt(i);
 			}

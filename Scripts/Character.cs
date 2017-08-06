@@ -1,38 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 
-[RequireComponent(typeof(StatManager))]
+[RequireComponent(typeof(StatManager), typeof(EffectManager))]
 public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 
-	public delegate void OnCharacterEventDelegate(GameObject p_owner);
+	public CharacterData _data;
 
+	public delegate void OnCharacterEventDelegate(GameObject p_owner);
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
-	public CharacterData _data;
 	ResourceStat _health;
-
-	StatManager _statManager;
-
 	bool _canUseSkill = true;
 
 	void Start() {
+		Assert.IsNotNull(_data, "There is not data attached to the character");
+
 		_events = new Dictionary<EventType, OnCharacterEventDelegate>();
-		_statManager = GetComponent<StatManager>();
 		_health = gameObject.AddComponent<ResourceStat>();
 
 		// Init all the data
 		Movement movement = Movement.AddMovement(gameObject, _data._movementType);
 
+		StatManager statManager = GetComponent<StatManager>();
 		foreach (CharacterData.StatData data in _data._stats) {
-			_statManager.AddStat(data.valueType, new Stat(data.baseValue, data.min, data.max));
+			statManager.AddStat(data.valueType, new Stat(data.baseValue, data.min, data.max));
 			foreach (CharacterData.StatModifierData modifier in data.statModifiers) {
-				_statManager.AddModifier(data.valueType, new StatModifier(this, modifier.value, modifier.statValueType, modifier.statModifierType, modifier.modifierFactorAttributes));
+				statManager.AddModifier(data.valueType, new StatModifier(this, modifier.value, modifier.statValueType, modifier.statModifierType, modifier.modifierFactorAttributes));
 			}
 		}
 
-		movement.Init(GetStat(StatType.Speed));
-		_health.Init(GetStat(StatType.HealthMax), GetStat(StatType.HealthRegen));
+		movement.Init(statManager.GetStat(StatType.Speed));
+		_health.Init(statManager.GetStat(StatType.HealthMax), statManager.GetStat(StatType.HealthRegen));
 	}
 
 	void Update() {
@@ -84,10 +84,6 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	public GameObject GetTarget() {
 		// TODO get the nearest ? target // implement a strategy to get the good target
 		return GameObject.Find("Enemy");
-	}
-
-	public Stat GetStat(StatType p_statType) {
-		return _statManager.GetStat(p_statType);
 	}
 
 	public ResourceStat Health {
