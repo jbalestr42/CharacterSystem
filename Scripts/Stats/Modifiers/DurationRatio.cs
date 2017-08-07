@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DurationRatio : AStatModifierFactor {
+public class DurationRatio : AStatModifier {
 
 	float _endOfEffect;
 
-	public override void Init(Character p_owner, Attribute p_attribute) {
+	public override void OnEffectStart(GameObject p_owner, Attribute p_attribute) {
 		_attributes = p_attribute;
 		_endOfEffect = Time.realtimeSinceStartup + _attributes.duration;
 	}

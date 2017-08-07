@@ -10,7 +10,6 @@ public abstract class AEffect {
 		_duration = p_duration;
 	}
 	
-	// Update is called once per frame
 	public void Update(GameObject _target) {
 		_duration -= Time.deltaTime;
 		UpdateEffect(_target);

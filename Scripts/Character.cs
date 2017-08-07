@@ -27,7 +27,7 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 		foreach (CharacterData.StatData data in _data._stats) {
 			statManager.AddStat(data.valueType, new Stat(data.baseValue, data.min, data.max));
 			foreach (CharacterData.StatModifierData modifier in data.statModifiers) {
-				statManager.AddModifier(data.valueType, new StatModifier(this, modifier.value, modifier.statValueType, modifier.statModifierType, modifier.modifierFactorAttributes));
+				statManager.AddModifier(data.valueType, AStatModifier.GetModifier(modifier.statModifierType, gameObject, modifier.modifierFactorAttributes));
 			}
 		}
 

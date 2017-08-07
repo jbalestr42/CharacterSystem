@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Counter : AStatModifierFactor {
+public class Counter : AStatModifier {
 
 	int _damageCount;
 
-	public override void Init(Character p_owner, Attribute p_attribute) {
+	public override void OnEffectStart(GameObject p_owner, Attribute p_attribute) {
 		_damageCount = 0;
 		_attributes = p_attribute;
-		p_owner.Suscribe(EventType.OnGetDamaged, OnGetDamaged);
+		p_owner.GetComponent<Character>().Suscribe(EventType.OnGetDamaged, OnGetDamaged);
 	}
 
 	public override float GetFactor(GameObject p_owner) {
@@ -20,7 +20,7 @@ public class Counter : AStatModifierFactor {
 		return _damageCount >= _attributes.count;
 	}
 
-	public override void OnRemoved(GameObject p_owner) {
+	public override void OnEffectEnd(GameObject p_owner) {
 		p_owner.GetComponent<Character>().Unsuscribe(EventType.OnGetDamaged, OnGetDamaged);
 	}
 

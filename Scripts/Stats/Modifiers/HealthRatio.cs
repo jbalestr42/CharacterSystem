@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthRatio : AStatModifierFactor {
+public class HealthRatio : AStatModifier {
 
 	public override float GetFactor(GameObject p_owner) {
 		float factor = p_owner.GetComponent<Character>().Health.GetRatio();

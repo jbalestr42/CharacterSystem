@@ -6,7 +6,7 @@ public class Stat {
 
 	// TODO use vector instead of dictionnary with enum as index
     private Dictionary<StatValueType, float> _values;
-    private List<StatModifier> _modifiers;
+    private List<AStatModifier> _modifiers;
     private float _total;
 
     public Stat(float p_value, float p_min, float p_max) {
@@ -16,7 +16,7 @@ public class Stat {
         _values.Add(StatValueType.RelativeBonus, 0f);
         _values.Add(StatValueType.Min, p_min);
         _values.Add(StatValueType.Max, p_max);
-        _modifiers = new List<StatModifier>();
+        _modifiers = new List<AStatModifier>();
         ComputeTotal();
     }
 
@@ -35,7 +35,7 @@ public class Stat {
         for (int i = _modifiers.Count - 1; i >= 0; i--) {
             _modifiers[i].Apply(this, p_owner);
 			if (_modifiers[i].IsOver()) {
-				_modifiers[i].OnRemoved(p_owner);
+				_modifiers[i].OnEffectEnd(p_owner);
 				_modifiers.RemoveAt(i);
 			}
         }
@@ -60,11 +60,11 @@ public class Stat {
         return _values[p_type];
     }
 
-    public void AddModifier(StatModifier p_stateModifier) {
+    public void AddModifier(AStatModifier p_stateModifier) {
         _modifiers.Add(p_stateModifier);
     }
 
-    public void RemoveModifier(StatModifier p_stateModifier) {
+    public void RemoveModifier(AStatModifier p_stateModifier) {
         _modifiers.Remove(p_stateModifier);
     }
 
