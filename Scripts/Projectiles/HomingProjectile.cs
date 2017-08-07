@@ -20,7 +20,7 @@ public class HomingProjectile : AProjectile {
 		IKillable chara = p_collider.gameObject.GetComponent<IKillable>();
 		if (p_collider.gameObject != p_owner.gameObject) {
 			if (chara != null) {
-				chara.GetDamage(p_owner.gameObject, _damage + p_owner.GetStat(StatType.Damage).Total);
+				chara.GetDamage(p_owner.gameObject, _damage + p_owner.GetComponent<StatManager>().GetStat(StatType.Damage).Total);
 			}
 			Destroy(gameObject);
 		}

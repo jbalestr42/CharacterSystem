@@ -7,10 +7,9 @@ public class CharacterData : ScriptableObject
 	[System.Serializable]
 	public struct StatModifierData
 	{
+		// TODO use inheritance to get the good attributes
 		public StatModifierType statModifierType;
-		public AStatModifierFactor.Attribute modifierFactorAttributes;
-		public StatValueType statValueType;
-		public float value;
+		public AStatModifier.Attribute modifierFactorAttributes;
 	}
 
     [System.Serializable]

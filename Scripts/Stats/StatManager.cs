@@ -28,12 +28,12 @@ public class StatManager : MonoBehaviour {
 		return _stats[p_type];
 	}
 
-	public void AddModifier(StatType p_statType, StatModifier p_stateModifier) {
+	public void AddModifier(StatType p_statType, AStatModifier p_stateModifier) {
 		if (_stats.ContainsKey(p_statType))
 			_stats[p_statType].AddModifier(p_stateModifier);
 	}
 
-	public void RemoveModifier(StatType p_statType, StatModifier p_stateModifier) {
+	public void RemoveModifier(StatType p_statType, AStatModifier p_stateModifier) {
 		if (_stats.ContainsKey(p_statType))
 			_stats[p_statType].RemoveModifier(p_stateModifier);
 	}
