@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ASkill : MonoBehaviour {
 
-	List<ARequirement> _requirements;
+	List<IRequirement> _requirements;
 
 	Character _owner;
 
@@ -18,7 +18,7 @@ public abstract class ASkill : MonoBehaviour {
 		_owner = GetComponent<Character>();
 	}
 
-	protected void Init(float p_castDuration, float p_cooldownDuration, List<ARequirement> p_requirements) {
+	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements) {
 		_castDuration = p_castDuration;
 		_cooldownDuration = p_cooldownDuration;
 		_requirements = p_requirements;
@@ -51,8 +51,8 @@ public abstract class ASkill : MonoBehaviour {
 	}
 
 	bool IsRequirementValidated() {
-		foreach (ARequirement requirement in _requirements) {
-			if (!requirement.IsValid(_owner)) {
+		foreach (var requirement in _requirements) {
+			if (!requirement.IsValid(gameObject)) {
 				return false;
 			}
 		}

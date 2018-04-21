@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputReq : ARequirement {
+public class InputReq : IRequirement {
 
 	string _key;
 
@@ -10,7 +10,7 @@ public class InputReq : ARequirement {
 		_key = p_key;
 	}
 
-	public override bool IsValid(Character p_owner) {
+	public bool IsValid(GameObject p_owner) {
 		if (Input.GetKey(_key)) {	
 			return true;
 		}

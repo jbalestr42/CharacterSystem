@@ -7,7 +7,7 @@ using UnityEngine;
 public class Silence : ASkill {
 
 	void Start() {
-		List<ARequirement> requirement = new List<ARequirement>();
+		var requirement = new List<IRequirement>();
 		requirement.Add(new InputReq("tab"));
 		// TODO ligne de vision entre le joueur et la cible ?
 		base.Init(0.0f, 5.0f, requirement);

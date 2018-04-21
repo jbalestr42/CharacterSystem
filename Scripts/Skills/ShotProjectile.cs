@@ -7,7 +7,7 @@ public class ShotProjectile : ASkill {
 	public GameObject _bullet;
 
 	void Start() {
-		List<ARequirement> requirement = new List<ARequirement>();
+		var requirement = new List<IRequirement>();
 		requirement.Add(new InputReq("space"));
 		base.Init(1.0f, 5.0f, requirement);
 	}

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotSilencedReq : ARequirement {
+public class NotSilencedReq : IRequirement {
 
-	public override bool IsValid(Character p_owner) {
-		return p_owner.CanUseSkill;
+	public bool IsValid(GameObject p_owner) {
+		return p_owner.GetComponent<Character>().CanUseSkill;
 	}
 }
