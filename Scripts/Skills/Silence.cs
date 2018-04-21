@@ -4,6 +4,9 @@ using UnityEngine;
 
 // TODO this skill can be generic (AddEffectSkill)
 // and add any kind of effect for a certain duration using an enum and a factory
+
+// We cana lso make a generic one frame skill (e.g. cleans: clean all negative effects and remove all negative modifiers)
+
 public class Silence : ASkill {
 
 	void Start() {

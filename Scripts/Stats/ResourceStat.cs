@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ResourceStat : MonoBehaviour
 {
-    Stat _max;
-    Stat _regen;
+    AAttribute _max;
+    AAttribute _regen;
     public float _value;
     public float _regenRate;
 
@@ -12,7 +12,7 @@ public class ResourceStat : MonoBehaviour
         _regenRate = 1f;
     }
 
-    public void Init(Stat p_max, Stat p_regen) {
+    public void Init(AAttribute p_max, AAttribute p_regen) {
         _max = p_max;
         _regen = p_regen;
         _value = _max.Total;

@@ -6,7 +6,7 @@ public abstract class AStatModifier {
 
     ModifierAttribute _attributes;
 
-    public void Apply(AStat p_stat, GameObject p_character) {
+    public void Apply(AAttribute p_stat, GameObject p_character) {
         float factor = GetFactor(p_character);
         p_stat.Add(_attributes.statValueType, _attributes.value * factor);
     }

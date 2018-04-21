@@ -3,17 +3,17 @@ using System.Collections;
 
 public abstract class Movement : MonoBehaviour {
 
-	Stat _speed;
+    AAttribute _speed;
 
 	void Update() {
 		UpdateMovement();
 	}
 
-	public Stat Speed {
+	public AAttribute Speed {
 		get { return _speed; }
 	}
 
-	public virtual void Init(Stat p_speed) {
+	public virtual void Init(AAttribute p_speed) {
 		_speed = p_speed;
 	}
 

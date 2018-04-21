@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class StatManager : MonoBehaviour {
 	
-	public Dictionary<int, Stat> _stats = new Dictionary<int, Stat>();
+	public Dictionary<int, AAttribute> _stats = new Dictionary<int, AAttribute>();
 
 	void Update() {
         foreach (var stat in _stats) {
@@ -25,7 +25,7 @@ public class StatManager : MonoBehaviour {
 		_stats.Add(p_statType, p_stat);
 	}
 
-	public Stat GetStat(int p_type) {
+	public AAttribute GetStat(int p_type) {
 		return _stats[p_type];
 	}
 

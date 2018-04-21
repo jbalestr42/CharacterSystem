@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AStat {
+// comment abstraire encore plus un AStat pour avoir des types différent (eg un simple bool (CanUseSkill))
+// dans ce cas on enleve le getfactor et on utilise un update dans le AStatModifier ?
+// Si on peut avoir des Stat de tout type, il n'y a plus de disctinction entre IEffect et AStatModifier -> L'ensemble est unifié
 
-    // TODO use vector instead of dictionnary with enum as index
+public abstract class AAttribute {
+
     private Dictionary<int, float> _values;
     private List<AStatModifier> _modifiers;
     private float _total;
 
-    public AStat() {
+    public AAttribute() {
         _values = new Dictionary<int, float>();
         _modifiers = new List<AStatModifier>();
         _total = 0f;

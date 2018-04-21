@@ -5,7 +5,7 @@ public class RandomMovement : Movement
 {
     Vector2 _direction;
 
-	public override void Init(Stat p_speed)
+	public override void Init(AAttribute p_speed)
     {
 		base.Init(p_speed);
 		StartCoroutine(ChangeDirection());

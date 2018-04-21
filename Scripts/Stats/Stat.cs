@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Stat : AStat {
+public class Stat : AAttribute {
 
     public Stat(float p_value, float p_min, float p_max)
         :base() {

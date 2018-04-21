@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour {
 
-	//TODO utiliser un dico avec comme clé le type d'effet (Good, Bad, Neutre)
 	List<IEffect> _effects;
 
 	void Start() {
