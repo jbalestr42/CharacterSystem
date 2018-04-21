@@ -9,13 +9,13 @@ public class CharacterData : ScriptableObject
 	{
 		// TODO use inheritance to get the good attributes
 		public StatModifierType statModifierType;
-		public AStatModifier.Attribute modifierFactorAttributes;
+		public ModifierAttribute modifierFactorAttributes;
 	}
 
     [System.Serializable]
     public struct StatData
     {
-        public StatType valueType;
+        public int valueType;
         public float baseValue;
         public float min;
 		public float max;
@@ -25,7 +25,7 @@ public class CharacterData : ScriptableObject
 	public MovementType _movementType;
 	public List<StatData> _stats;
 
-	[UnityEditor.MenuItem("Assets/Create/CharacterData")]
+    [UnityEditor.MenuItem("Assets/Create/CharacterData")]
 	public static void CreateAsset()
 	{
 		ScriptableObjectUtility.CreateAsset<CharacterData>();

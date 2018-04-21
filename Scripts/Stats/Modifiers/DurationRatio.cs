@@ -2,22 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DurationRatio : AStatModifier {
-
-	float _endOfEffect;
-
-	public override void OnEffectStart(GameObject p_owner, Attribute p_attribute) {
-		_attributes = p_attribute;
-		_endOfEffect = Time.realtimeSinceStartup + _attributes.duration;
-	}
-
-	public override bool IsOver() {
-		return (_endOfEffect - Time.realtimeSinceStartup) <= 0.0f;
-	}
+public class DurationRatio : Duration {
 
 	public override float GetFactor(GameObject p_owner) {
-		float factor = Mathf.Clamp((_endOfEffect - Time.realtimeSinceStartup) / _attributes.duration, 0.0f, 1.0f);
-		if (_attributes.inverse) {
+		float factor = Mathf.Clamp(GetRatio(), 0.0f, 1.0f);
+		if (Attribute.inverse) {
 			return (1 - factor);
 		}
 		return (factor);

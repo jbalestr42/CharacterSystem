@@ -5,24 +5,24 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour {
 
 	//TODO utiliser un dico avec comme clé le type d'effet (Good, Bad, Neutre)
-	List<AEffect> _effects;
+	List<IEffect> _effects;
 
 	void Start() {
-		_effects = new List<AEffect>();
+		_effects = new List<IEffect>();
 	}
 	
 	void Update() {
 		for (int i = _effects.Count - 1; i >= 0 ; i--) {
 			_effects[i].Update(gameObject);
-			if (_effects[i].IsEffectOver()) {
-				_effects[i].OnEffectEnd(gameObject);
+			if (_effects[i].IsOver()) {
+				_effects[i].OnEnd(gameObject);
 				_effects.RemoveAt(i);
 			}
 		}
 	}
 
-	public void AddEffect(AEffect p_effect) {
-		p_effect.OnEffectStart(gameObject);
+	public void AddEffect(IEffect p_effect) {
+		p_effect.OnStart(gameObject);
 		_effects.Add(p_effect);
 	}
 }

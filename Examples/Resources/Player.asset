@@ -28,22 +28,22 @@ MonoBehaviour:
         count: 0
         inverse: 1
         duration: 0
-      statValueType: 1
-      value: 1
+        value: 1
+        statValueType: 1
   - valueType: 3
-    baseValue: 5
+    baseValue: 10
     min: 0
-    max: 50
-    statModifiers: []
-  - valueType: 2
-    baseValue: 5
-    min: 0
-    max: 50
+    max: 100
     statModifiers:
-    - statModifierType: 2
+    - statModifierType: 1
       modifierFactorAttributes:
-        count: 5
+        count: 0
         inverse: 0
-        duration: 0
-      statValueType: 1
-      value: 3
+        duration: 10
+        value: -10
+        statValueType: 1
+  - valueType: 2
+    baseValue: 10
+    min: 0
+    max: 100
+    statModifiers: []

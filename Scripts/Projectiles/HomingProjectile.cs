@@ -21,7 +21,13 @@ public class HomingProjectile : AProjectile {
 		if (p_collider.gameObject != p_owner.gameObject) {
 			if (chara != null) {
 				chara.GetDamage(p_owner.gameObject, _damage + p_owner.GetComponent<StatManager>().GetStat(StatType.Damage).Total);
-			}
+
+                // TODO apply the onhit effect from the owner to the target
+                // And the damage is a onhit effect
+                var attribute = new ModifierAttribute(0, false, 3f, -1f, StatValueType.RelativeBonus);
+                var modifier = AStatModifier.GetModifier(StatModifierType.DurationRatio, p_collider.gameObject, attribute);
+                p_collider.gameObject.GetComponent<StatManager>().AddModifier(StatType.Speed, modifier);
+            }
 			Destroy(gameObject);
 		}
 	}
