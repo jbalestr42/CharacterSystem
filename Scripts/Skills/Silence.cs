@@ -13,11 +13,17 @@ public class Silence : ASkill {
 		var requirement = new List<IRequirement>();
 		requirement.Add(new InputReq("tab"));
 		// TODO ligne de vision entre le joueur et la cible ?
-		base.Init(0.0f, 5.0f, requirement);
+		base.Init(0.1f, 5.0f, requirement);
 	}
 
 	public override void Cast(Character p_owner) {
 		GameObject target = p_owner.GetTarget();
-		target.GetComponent<EffectManager>().AddEffect(new SilenceEffect(2.0f));
+
+        AttributeParam attribute = new AttributeParam();
+        attribute.valueBool = false;
+        attribute.duration = 3f;
+        attribute.attributeType = AttributeType.CanUseSkill;
+        attribute.attributeValueType = AttributeValueType.Base;
+        target.GetComponent<AttributeManager>().AddModifier(AttributeType.CanUseSkill, AttributeModifier.GetModifier(AttributModifierType.Duration, target, attribute));
 	}
 }

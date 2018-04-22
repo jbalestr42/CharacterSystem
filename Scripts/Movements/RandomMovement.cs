@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RandomMovement : Movement
+public class RandomMovement : AMovement
 {
     Vector2 _direction;
 
-	public override void Init(AAttribute p_speed)
+	public override void Init(Attribute<float> p_speed)
     {
 		base.Init(p_speed);
 		StartCoroutine(ChangeDirection());
@@ -13,7 +13,7 @@ public class RandomMovement : Movement
 
 	public override void UpdateMovement()
     {
-        transform.Translate(_direction * Time.deltaTime * Speed.Total);
+        transform.Translate(_direction * Time.deltaTime * Speed.Value);
     }
 
     IEnumerator ChangeDirection()

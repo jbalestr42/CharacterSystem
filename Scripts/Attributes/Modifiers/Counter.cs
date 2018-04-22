@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Counter : AStatModifier {
+public class Counter : AttributeModifier {
 
 	int _damageCount;
 
@@ -11,12 +11,13 @@ public class Counter : AStatModifier {
 		p_owner.GetComponent<Character>().Suscribe(EventType.OnGetDamaged, OnGetDamaged);
 	}
 
-	public override float GetFactor(GameObject p_owner) {
-		return 1f;
-	}
+    public override void Update(GameObject p_owner) {
+        Attribute<float> attribute = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Attributes.attributeType);
+        attribute.SetValue(Attributes.attributeValueType, attribute.GetValue(Attributes.attributeValueType) + Attributes.value);
+    }
 
-	public override bool IsOver() {
-		return _damageCount >= Attribute.count;
+    public override bool IsOver() {
+		return _damageCount >= Attributes.count;
 	}
 
 	public override void OnEnd(GameObject p_owner) {

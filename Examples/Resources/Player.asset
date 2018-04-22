@@ -12,38 +12,24 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   _movementType: 0
-  _stats:
+  _attributes:
   - valueType: 0
     baseValue: 100
     min: 0
     max: 1000
-    statModifiers: []
+    AttributModifiers: []
   - valueType: 1
     baseValue: 1
     min: 0
     max: 10
-    statModifiers:
-    - statModifierType: 0
-      modifierFactorAttributes:
-        count: 0
-        inverse: 1
-        duration: 0
-        value: 1
-        statValueType: 1
-  - valueType: 3
-    baseValue: 10
-    min: 0
-    max: 100
-    statModifiers:
-    - statModifierType: 1
-      modifierFactorAttributes:
-        count: 0
-        inverse: 0
-        duration: 10
-        value: -10
-        statValueType: 1
+    AttributModifiers: []
   - valueType: 2
-    baseValue: 10
+    baseValue: 7
     min: 0
     max: 100
-    statModifiers: []
+    AttributModifiers: []
+  - valueType: 3
+    baseValue: 5
+    min: 0
+    max: 20
+    AttributModifiers: []

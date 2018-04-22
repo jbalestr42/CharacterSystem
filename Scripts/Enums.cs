@@ -1,4 +1,5 @@
-﻿public class StatValueType {
+﻿public class AttributeValueType {
+    public static int Default = -1;
     public static int Base = 0;
     public static int AbsoluteBonus = 1;
     public static int RelativeBonus = 2;
@@ -6,16 +7,17 @@
     public static int Max = 4;
 }
 
-public class StatType {
+public class AttributeType {
     public static int HealthMax = 0;
     public static int HealthRegen = 1;
     public static int Damage = 2;
     public static int Speed = 3;
     public static int Luck = 4;
     public static int CooldownReduction = 5;
+    public static int CanUseSkill = 6;
 }
 
-public enum StatModifierType {
+public enum AttributModifierType {
 	HealthRatio,
 	DurationRatio,
 	Counter,

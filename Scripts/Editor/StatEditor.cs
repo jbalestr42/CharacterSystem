@@ -5,19 +5,19 @@ using UnityEditor;
 using UnityEngine;
 
 
-public class StatEditor : EditorWindow {
+public class AttributeEditor : EditorWindow {
 
     Vector2 scrollPosition;
     public CharacterData _data;
 
-    [MenuItem("Window/Stat Editor %#e")]
+    [MenuItem("Window/Attribute Editor %#e")]
     static void Init() {
-        EditorWindow.GetWindow(typeof(StatEditor));
+        EditorWindow.GetWindow(typeof(AttributeEditor));
     }
 
     void OnGUI() {
         using (var scrollView = new EditorGUILayout.ScrollViewScope(scrollPosition, GUILayout.Width(this.position.width), GUILayout.Height(this.position.height))) {
-            EditorGUILayout.LabelField("Welcome in the Stat editor", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Welcome in the Attribute editor", EditorStyles.boldLabel);
             scrollPosition = scrollView.scrollPosition;
 
             EditorGUI.BeginChangeCheck();
@@ -32,10 +32,10 @@ public class StatEditor : EditorWindow {
 
             SerializedObject serializedObject = new SerializedObject(_data);
             serializedObject.Update();
-            SerializedProperty list = serializedObject.FindProperty("_stats");
+            SerializedProperty list = serializedObject.FindProperty("_attributes");
 
             for (int i = 0; i < list.arraySize; i++) {
-                var sublist = list.GetArrayElementAtIndex(i).FindPropertyRelative("statModifiers");
+                var sublist = list.GetArrayElementAtIndex(i).FindPropertyRelative("AttributModifiers");
                 var baseValue = list.GetArrayElementAtIndex(i).FindPropertyRelative("baseValue");
                 var min = list.GetArrayElementAtIndex(i).FindPropertyRelative("min");
                 var max = list.GetArrayElementAtIndex(i).FindPropertyRelative("max");

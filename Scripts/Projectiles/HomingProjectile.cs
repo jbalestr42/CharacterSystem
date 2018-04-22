@@ -20,13 +20,13 @@ public class HomingProjectile : AProjectile {
 		IKillable chara = p_collider.gameObject.GetComponent<IKillable>();
 		if (p_collider.gameObject != p_owner.gameObject) {
 			if (chara != null) {
-				chara.GetDamage(p_owner.gameObject, _damage + p_owner.GetComponent<StatManager>().GetStat(StatType.Damage).Total);
+				chara.GetDamage(p_owner.gameObject, _damage + p_owner.GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.Damage).Value);
 
                 // TODO apply the onhit effect from the owner to the target
                 // And the damage is a onhit effect
-                var attribute = new ModifierAttribute(0, false, 3f, -1f, StatValueType.RelativeBonus);
-                var modifier = AStatModifier.GetModifier(StatModifierType.DurationRatio, p_collider.gameObject, attribute);
-                p_collider.gameObject.GetComponent<StatManager>().AddModifier(StatType.Speed, modifier);
+                var attribute = new AttributeParam(0, false, 3f, -1f, false, AttributeType.Speed, AttributeValueType.RelativeBonus);
+                var modifier = AttributeModifier.GetModifier(AttributModifierType.DurationRatio, p_collider.gameObject, attribute);
+                p_collider.gameObject.GetComponent<AttributeManager>().AddModifier(AttributeType.Speed, modifier);
             }
 			Destroy(gameObject);
 		}

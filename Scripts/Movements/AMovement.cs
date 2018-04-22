@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Movement : MonoBehaviour {
+public abstract class AMovement : MonoBehaviour {
 
-    AAttribute _speed;
+    Attribute<float> _speed;
 
 	void Update() {
 		UpdateMovement();
 	}
 
-	public AAttribute Speed {
+	public Attribute<float> Speed {
 		get { return _speed; }
 	}
 
-	public virtual void Init(AAttribute p_speed) {
+	public virtual void Init(Attribute<float> p_speed) {
 		_speed = p_speed;
 	}
 
 	public abstract void UpdateMovement();
 
-	public static Movement AddMovement(GameObject p_character, MovementType p_movementType) {
+	public static AMovement AddMovement(GameObject p_character, MovementType p_movementType) {
 		switch (p_movementType) {
 		case MovementType.Player:
 			return p_character.AddComponent<PlayerMovement>();

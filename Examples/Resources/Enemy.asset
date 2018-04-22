@@ -12,24 +12,33 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: 
   _movementType: 1
-  _stats:
-  - valueType: 3
-    baseValue: 2
-    min: 0
-    max: 5
-    statModifiers: []
+  _attributes:
   - valueType: 0
-    baseValue: 10
+    baseValue: 100
     min: 0
-    max: 100
-    statModifiers: []
+    max: 1000
+    AttributModifiers: []
   - valueType: 1
     baseValue: 1
     min: 0
-    max: 2
-    statModifiers: []
-  - valueType: 2
-    baseValue: 1
-    min: 0
     max: 10
-    statModifiers: []
+    AttributModifiers: []
+  - valueType: 2
+    baseValue: 7
+    min: 0
+    max: 100
+    AttributModifiers: []
+  - valueType: 3
+    baseValue: 3
+    min: 0
+    max: 20
+    AttributModifiers:
+    - AttributModifierType: 1
+      modifierFactorAttributes:
+        count: 0
+        inverse: 0
+        duration: 5
+        value: -1
+        valueBool: 0
+        attributeType: 3
+        attributeValueType: 2

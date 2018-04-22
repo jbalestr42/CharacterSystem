@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(StatManager), typeof(EffectManager))]
+[RequireComponent(typeof(AttributeManager))]
 public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 
 	public CharacterData _data;
@@ -11,28 +11,29 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	public delegate void OnCharacterEventDelegate(GameObject p_owner);
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
-	ResourceStat _health;
+	ResourceAttribute _health;
 	bool _canUseSkill = true;
 
 	void Start() {
 		Assert.IsNotNull(_data, "There is not data attached to the character");
 
 		_events = new Dictionary<EventType, OnCharacterEventDelegate>();
-		_health = gameObject.AddComponent<ResourceStat>();
+		_health = gameObject.AddComponent<ResourceAttribute>();
 
 		// Init all the data
-		Movement movement = Movement.AddMovement(gameObject, _data._movementType);
+		AMovement movement = AMovement.AddMovement(gameObject, _data._movementType);
 
-		StatManager statManager = GetComponent<StatManager>();
-		foreach (CharacterData.StatData data in _data._stats) {
-			statManager.AddStat(data.valueType, new Stat(data.baseValue, data.min, data.max));
-			foreach (CharacterData.StatModifierData modifier in data.statModifiers) {
-				statManager.AddModifier(data.valueType, AStatModifier.GetModifier(modifier.statModifierType, gameObject, modifier.modifierFactorAttributes));
+		AttributeManager AttributeManager = GetComponent<AttributeManager>();
+		foreach (CharacterData.AttributeData data in _data._attributes) {
+			AttributeManager.AddAttribute(data.valueType, new BasicAttribute(data.baseValue, data.min, data.max));
+			foreach (CharacterData.AttributModifierData modifier in data.AttributModifiers) {
+				AttributeManager.AddModifier(data.valueType, AttributeModifier.GetModifier(modifier.AttributModifierType, gameObject, modifier.modifierFactorAttributes));
 			}
 		}
+        AttributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true, true));
 
-		movement.Init(statManager.GetStat(StatType.Speed));
-		_health.Init(statManager.GetStat(StatType.HealthMax), statManager.GetStat(StatType.HealthRegen));
+		movement.Init(AttributeManager.GetAttribute<float>(AttributeType.Speed));
+		_health.Init(AttributeManager.GetAttribute<float>(AttributeType.HealthMax), AttributeManager.GetAttribute<float>(AttributeType.HealthRegen));
 	}
 
 	void Update() {
@@ -86,7 +87,7 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 		return GameObject.Find("Enemy");
 	}
 
-	public ResourceStat Health {
+	public ResourceAttribute Health {
 		get { return _health; }
 	}
 

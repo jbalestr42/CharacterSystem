@@ -5,25 +5,25 @@ using System.Collections.Generic;
 public class CharacterData : ScriptableObject
 {
 	[System.Serializable]
-	public struct StatModifierData
+	public struct AttributModifierData
 	{
 		// TODO use inheritance to get the good attributes
-		public StatModifierType statModifierType;
-		public ModifierAttribute modifierFactorAttributes;
+		public AttributModifierType AttributModifierType;
+		public AttributeParam modifierFactorAttributes;
 	}
 
     [System.Serializable]
-    public struct StatData
+    public struct AttributeData
     {
         public int valueType;
         public float baseValue;
         public float min;
 		public float max;
-		public List<StatModifierData> statModifiers;
+		public List<AttributModifierData> AttributModifiers;
     }
 
 	public MovementType _movementType;
-	public List<StatData> _stats;
+	public List<AttributeData> _attributes;
 
     [UnityEditor.MenuItem("Assets/Create/CharacterData")]
 	public static void CreateAsset()
