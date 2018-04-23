@@ -26,13 +26,14 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 		AttributeManager AttributeManager = GetComponent<AttributeManager>();
 		foreach (CharacterData.AttributeData data in _data._attributes) {
 			AttributeManager.AddAttribute(data.valueType, new BasicAttribute(data.baseValue, data.min, data.max));
-			foreach (CharacterData.AttributModifierData modifier in data.AttributModifiers) {
-				AttributeManager.AddModifier(data.valueType, AttributeModifier.GetModifier(modifier.AttributModifierType, gameObject, modifier.modifierFactorAttributes));
-			}
+			//foreach (CharacterData.AttributModifierData modifier in data.AttributModifiers) {
+			//	AttributeManager.AddModifier(data.valueType, AttributeModifier.GetModifier(modifier.AttributModifierType, gameObject, modifier.modifierFactorAttributes));
+			//}
 		}
         AttributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true, true));
+        AttributeManager.AddModifier(AttributeType.Speed, AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParamT<float>(0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
 
-		movement.Init(AttributeManager.GetAttribute<float>(AttributeType.Speed));
+        movement.Init(AttributeManager.GetAttribute<float>(AttributeType.Speed));
 		_health.Init(AttributeManager.GetAttribute<float>(AttributeType.HealthMax), AttributeManager.GetAttribute<float>(AttributeType.HealthRegen));
 	}
 

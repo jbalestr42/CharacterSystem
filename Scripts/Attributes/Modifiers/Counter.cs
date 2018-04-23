@@ -12,8 +12,9 @@ public class Counter : AttributeModifier {
 	}
 
     public override void Update(GameObject p_owner) {
-        Attribute<float> attribute = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Attributes.attributeType);
-        attribute.SetValue(Attributes.attributeValueType, attribute.GetValue(Attributes.attributeValueType) + Attributes.value);
+        // TODO tredo
+        //Attribute<float> attribute = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Attributes.attributeType);
+        //attribute.SetValue(Attributes.attributeValueType, attribute.GetValue(Attributes.attributeValueType) + Attributes.value);
     }
 
     public override bool IsOver() {

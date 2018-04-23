@@ -26,11 +26,16 @@ public class AttributeManager : MonoBehaviour {
     }
 
     public Attribute<T> GetAttribute<T>(int p_type) {
+        // TODO assert
         var attribute = _stats[p_type] as Attribute<T>;
         if (attribute != null) {
             return attribute;
         }
         return null;
+    }
+
+    public void SetAttribute(AttributeParam p_attributes) {
+        _stats[p_attributes.attributeType].Test(p_attributes);
     }
 
     public void AddModifier(int p_statType, AttributeModifier p_stateModifier) {

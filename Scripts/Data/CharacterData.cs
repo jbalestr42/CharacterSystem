@@ -9,7 +9,7 @@ public class CharacterData : ScriptableObject
 	{
 		// TODO use inheritance to get the good attributes
 		public AttributModifierType AttributModifierType;
-		public AttributeParam modifierFactorAttributes;
+		public AttributeParamT<float> modifierFactorAttributes;
 	}
 
     [System.Serializable]

@@ -11,14 +11,7 @@ public class Duration : AttributeModifier {
     }
 
     public override void Update(GameObject p_owner) {
-        Attribute<float> attributeFloat = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Attributes.attributeType);
-        if (attributeFloat != null) {
-            attributeFloat.SetValue(Attributes.attributeValueType, attributeFloat.GetValue(Attributes.attributeValueType) + Attributes.value);
-        }
-        Attribute<bool> attributeBool = p_owner.GetComponent<AttributeManager>().GetAttribute<bool>(Attributes.attributeType);
-        if (attributeBool != null) {
-            attributeBool.SetValue(Attributes.attributeValueType, Attributes.valueBool);
-        }
+        p_owner.GetComponent<AttributeManager>().SetAttribute(Attributes);
     }
 
     public override bool IsOver() {

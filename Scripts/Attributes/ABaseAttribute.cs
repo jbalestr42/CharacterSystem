@@ -17,6 +17,8 @@ public abstract class ABaseAttribute {
 
     public abstract void AfterModifierUpdate();
 
+    public abstract void Test(AttributeParam p);
+
     void UpdateModifier(GameObject p_owner) {
         for (int i = _modifiers.Count - 1; i >= 0; i--) {
             _modifiers[i].Update(p_owner);
