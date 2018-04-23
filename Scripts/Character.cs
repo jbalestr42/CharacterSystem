@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 			//}
 		}
         AttributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true, true));
-        AttributeManager.AddModifier(AttributeType.Speed, AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParamT<float>(0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
+        AttributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParamT<float>(0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
 
         movement.Init(AttributeManager.GetAttribute<float>(AttributeType.Speed));
 		_health.Init(AttributeManager.GetAttribute<float>(AttributeType.HealthMax), AttributeManager.GetAttribute<float>(AttributeType.HealthRegen));

@@ -32,13 +32,4 @@ MonoBehaviour:
     baseValue: 3
     min: 0
     max: 20
-    AttributModifiers:
-    - AttributModifierType: 1
-      modifierFactorAttributes:
-        count: 0
-        inverse: 0
-        duration: 5
-        value: -1
-        valueBool: 0
-        attributeType: 3
-        attributeValueType: 2
+    AttributModifiers: []

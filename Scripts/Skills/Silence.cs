@@ -24,6 +24,6 @@ public class Silence : ASkill {
         attribute.duration = 3f;
         attribute.attributeType = AttributeType.CanUseSkill;
         attribute.attributeValueType = AttributeValueType.Base;
-        target.GetComponent<AttributeManager>().AddModifier(AttributeType.CanUseSkill, AttributeModifier.GetModifier(AttributModifierType.Duration, target, attribute));
+        target.GetComponent<AttributeManager>().AddModifier(AttributeModifier.GetModifier(AttributModifierType.Duration, target, attribute));
 	}
 }

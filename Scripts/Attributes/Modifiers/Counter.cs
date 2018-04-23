@@ -12,13 +12,13 @@ public class Counter : AttributeModifier {
 	}
 
     public override void Update(GameObject p_owner) {
-        // TODO tredo
+        // TODO rework
         //Attribute<float> attribute = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Attributes.attributeType);
         //attribute.SetValue(Attributes.attributeValueType, attribute.GetValue(Attributes.attributeValueType) + Attributes.value);
     }
 
     public override bool IsOver() {
-		return _damageCount >= Attributes.count;
+		return _damageCount >= Param.count;
 	}
 
 	public override void OnEnd(GameObject p_owner) {

@@ -7,11 +7,11 @@ public class Duration : AttributeModifier {
     protected float _endOfEffect;
 
     public override void OnStart(GameObject p_owner) {
-        _endOfEffect = Time.realtimeSinceStartup + Attributes.duration;
+        _endOfEffect = Time.realtimeSinceStartup + Param.duration;
     }
 
     public override void Update(GameObject p_owner) {
-        p_owner.GetComponent<AttributeManager>().SetAttribute(Attributes);
+        p_owner.GetComponent<AttributeManager>().SetAttributeParam(Param);
     }
 
     public override bool IsOver() {
@@ -19,6 +19,6 @@ public class Duration : AttributeModifier {
     }
 
     public float GetRatio() {
-        return Mathf.Clamp((_endOfEffect - Time.realtimeSinceStartup) / Attributes.duration, 0.0f, 1.0f);
+        return Mathf.Clamp((_endOfEffect - Time.realtimeSinceStartup) / Param.duration, 0.0f, 1.0f);
     }
 }

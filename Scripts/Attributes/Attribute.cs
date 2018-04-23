@@ -29,8 +29,9 @@ public class Attribute<T> : ABaseAttribute {
     public virtual T Value {
         get { return _value; }
     }
-    //TODOCette foncgtion peut prendre un float factor au lieu de le passer dans le Attribute
-    public override void Test(AttributeParam p) {
+
+    public override void SetAttributeParam(AttributeParam p) {
+        // TODO asseert 
         var att = (AttributeParamT<T>)p;
         SetValue(att.attributeValueType, att.value);
     }

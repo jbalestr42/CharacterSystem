@@ -26,7 +26,7 @@ public class HomingProjectile : AProjectile {
                 // And the damage is a onhit effect
                 var attribute = new AttributeParamT<float>(0, false, 3f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus);
                 var modifier = AttributeModifier.GetModifier(AttributModifierType.DurationRatio, p_collider.gameObject, attribute);
-                p_collider.gameObject.GetComponent<AttributeManager>().AddModifier(AttributeType.Speed, modifier);
+                p_collider.gameObject.GetComponent<AttributeManager>().AddModifier(modifier);
             }
 			Destroy(gameObject);
 		}

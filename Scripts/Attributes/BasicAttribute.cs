@@ -25,7 +25,8 @@ public class BasicAttribute : Attribute<float> {
         get { return _total;  }
     }
 
-    public override void Test(AttributeParam p) {
+    public override void SetAttributeParam(AttributeParam p) {
+        // TODO asseert 
         var att = (AttributeParamT<float>)p;
         SetValue(att.attributeValueType, GetValue(att.attributeValueType) + att.value * att.factor);
     }

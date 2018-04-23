@@ -3,11 +3,11 @@
 public class DurationRatio : Duration {
 
 	public override void Update(GameObject p_owner) {
-		Attributes.factor = GetRatio();
-		if (Attributes.inverse) {
-            Attributes.factor = 1f - Attributes.factor;
+        Param.factor = GetRatio();
+		if (Param.inverse) {
+            Param.factor = 1f - Param.factor;
 		}
 
-        p_owner.GetComponent<AttributeManager>().SetAttribute(Attributes);
+        p_owner.GetComponent<AttributeManager>().SetAttributeParam(Param);
     }
 }

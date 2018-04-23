@@ -4,19 +4,19 @@ using System;
 
 public abstract class AttributeModifier {
 
-    AttributeParam _attributes;
+    AttributeParam _params;
 
     public virtual void OnStart(GameObject p_owner) { }
     public virtual void Update(GameObject p_character) { }
     public virtual void OnEnd(GameObject p_owner) { }
     public virtual bool IsOver() { return false; }
 
-    protected AttributeParam Attributes {
-        get { return _attributes; }
+    public AttributeParam Param {
+        get { return _params; }
     }
 
     // Utiliser une generic factory
-	public static AttributeModifier GetModifier(AttributModifierType p_modifierType, GameObject p_owner, AttributeParam p_attributes) {
+	public static AttributeModifier GetModifier(AttributModifierType p_modifierType, GameObject p_owner, AttributeParam p_param) {
 		AttributeModifier modifierFactor = null;
 		switch (p_modifierType) {
 		    case AttributModifierType.HealthRatio:
@@ -41,7 +41,7 @@ public abstract class AttributeModifier {
 			return null;
 		}
 
-		modifierFactor._attributes = p_attributes;
+		modifierFactor._params = p_param;
 		modifierFactor.OnStart(p_owner);
 
 		return modifierFactor;
