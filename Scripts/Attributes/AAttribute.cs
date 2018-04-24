@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 using UnityEngine;
 
 public abstract class AAttribute {
@@ -35,5 +36,11 @@ public abstract class AAttribute {
 
     public void RemoveModifier(AttributeModifier p_attributeeModifier) {
         _modifiers.Remove(p_attributeeModifier);
+    }
+
+    public static T Cast<T>(AAttribute p_value) where T : AAttribute {
+        T value = (T)p_value;
+        Assert.IsNotNull(value);
+        return value;
     }
 }

@@ -39,10 +39,6 @@ public class AttributeModifier {
                 modifierFactor = new Duration();
                 break;
 
-            case AttributModifierType.Counter:
-                modifierFactor = new Counter();
-                break;
-
             default:
 			Debug.Log("The enum " + p_modifierType.ToString() + " is not recognized.");
 			return null;

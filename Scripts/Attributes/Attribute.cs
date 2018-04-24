@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class Attribute<T> : AAttribute {
 
     Dictionary<int, T> _values;
     T _value;
+
+    public Attribute()
+        :this(default(T), default(T)) { }
 
     public Attribute(T p_value, T p_defaultValue) {
         _values = new Dictionary<int, T>();
@@ -31,8 +32,7 @@ public class Attribute<T> : AAttribute {
     }
 
     public override void SetAttributeParam(BaseAttributeParam p) {
-        // TODO asseert 
-        var att = (AttributeParam<T>)p;
+        var att = BaseAttributeParam.Cast<AttributeParam<T>>(p);
         SetValue(att.attributeValueType, att.value);
     }
 }

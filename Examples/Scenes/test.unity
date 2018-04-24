@@ -332,6 +332,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114865308357678878, guid: 23baee53f1b5bfd4b8fb0364e097e197,
+        type: 2}
+      propertyPath: _movementType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114158460996393512, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 23baee53f1b5bfd4b8fb0364e097e197, type: 2}

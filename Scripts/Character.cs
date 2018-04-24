@@ -1,25 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Assertions;
 
 [RequireComponent(typeof(AttributeManager))]
 public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 
-	public CharacterData _data;
-
 	public delegate void OnCharacterEventDelegate(GameObject p_owner);
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
+    public MovementType _movementType;
 	bool _canUseSkill = true;
 
 	void Start() {
-		Assert.IsNotNull(_data, "There is not data attached to the character");
-
 		_events = new Dictionary<EventType, OnCharacterEventDelegate>();
 
 		// Init all the data
-		AMovement movement = AMovement.AddMovement(gameObject, _data._movementType);
+		AMovement movement = AMovement.AddMovement(gameObject, _movementType);
 
 		AttributeManager attributeManager = GetComponent<AttributeManager>();
         attributeManager.AddAttribute(AttributeType.Health, new ResourceAttribute(100, 0, 1000));

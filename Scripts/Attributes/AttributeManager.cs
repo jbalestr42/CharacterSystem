@@ -10,7 +10,6 @@ public class AttributeManager : MonoBehaviour {
         foreach (var attribute in _attributes) {
             attribute.Value.Update(gameObject);
         }
-        //Debug.Log(GetAttribute<float>(AttributeType.Speed).GetValue(AttributeValueType.RelativeBonus).ToString("F4"));
 	}
 
 	public void AddAttribute(int p_attributeType, AAttribute p_stat) {
@@ -18,8 +17,7 @@ public class AttributeManager : MonoBehaviour {
     }
 
     public Attribute<T> GetAttribute<T>(int p_type) {
-        // TODO assert
-        var attribute = _attributes[p_type] as Attribute<T>;
+        var attribute = AAttribute.Cast<Attribute<T>>(_attributes[p_type]);
         if (attribute != null) {
             return attribute;
         }

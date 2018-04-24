@@ -22,9 +22,7 @@ public class AttributeType {
 public enum AttributModifierType {
     Regen,
 	DurationRatio,
-	Counter,
-    Duration,
-    Copy
+    Duration
 }
 
 public enum EventType {

@@ -19,7 +19,7 @@ public class Regen : AttributeModifier {
         _timer += Time.deltaTime;
         if (_timer >= _regenRate) {
             _timer -= _regenRate;
-            var p = (RegenAttributeParam)Param; //TODO static method to cast
+            var p = BaseAttributeParam.Cast<RegenAttributeParam>(Param);
             p.value = _regen.Value;
             p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Param.attributeType).SetValue(AttributeValueType.Add, _regen.Value);
             p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Param.attributeType).SetValue(AttributeValueType.Max, _max.Value);

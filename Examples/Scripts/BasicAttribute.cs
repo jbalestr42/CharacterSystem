@@ -26,8 +26,7 @@ public class BasicAttribute : Attribute<float> {
     }
 
     public override void SetAttributeParam(BaseAttributeParam p) {
-        // TODO methode static pour cast
-        var att = (AttributeParam<float>)p;
+        var att = BaseAttributeParam.Cast<AttributeParam<float>>(p);
         SetValue(att.attributeValueType, GetValue(att.attributeValueType) + att.value * att.factor);
     }
 }
@@ -53,8 +52,7 @@ public class ResourceAttribute : Attribute<float> {
     }
 
     public override void SetAttributeParam(BaseAttributeParam p) {
-        // TODO methode static pour cast
-        var att = (AttributeParam<float>)p;
+        var att = BaseAttributeParam.Cast<AttributeParam<float>>(p);
         SetValue(att.attributeValueType, GetValue(att.attributeValueType) + att.value * att.factor);
     }
 }
