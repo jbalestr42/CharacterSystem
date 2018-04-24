@@ -19,7 +19,7 @@ public class Silence : ASkill {
 	public override void Cast(Character p_owner) {
 		GameObject target = p_owner.GetTarget();
 
-        AttributeParamT<bool> attribute = new AttributeParamT<bool>();
+        AttributeParam<bool> attribute = new AttributeParam<bool>();
         attribute.value = false;
         attribute.duration = 3f;
         attribute.attributeType = AttributeType.CanUseSkill;

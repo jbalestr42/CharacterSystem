@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ABaseAttribute {
+public abstract class AAttribute {
 
     private List<AttributeModifier> _modifiers;
 
-    public ABaseAttribute() {
+    public AAttribute() {
         _modifiers = new List<AttributeModifier>();
     }
 
@@ -17,7 +17,7 @@ public abstract class ABaseAttribute {
 
     public abstract void AfterModifierUpdate();
 
-    public abstract void SetAttributeParam(AttributeParam p);
+    public abstract void SetAttributeParam(BaseAttributeParam p);
 
     void UpdateModifier(GameObject p_owner) {
         for (int i = _modifiers.Count - 1; i >= 0; i--) {

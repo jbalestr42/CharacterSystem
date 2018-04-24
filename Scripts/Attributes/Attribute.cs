@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attribute<T> : ABaseAttribute {
+public class Attribute<T> : AAttribute {
 
     Dictionary<int, T> _values;
     T _value;
@@ -30,9 +30,9 @@ public class Attribute<T> : ABaseAttribute {
         get { return _value; }
     }
 
-    public override void SetAttributeParam(AttributeParam p) {
+    public override void SetAttributeParam(BaseAttributeParam p) {
         // TODO asseert 
-        var att = (AttributeParamT<T>)p;
+        var att = (AttributeParam<T>)p;
         SetValue(att.attributeValueType, att.value);
     }
 }

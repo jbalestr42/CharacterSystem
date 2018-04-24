@@ -11,36 +11,38 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	public delegate void OnCharacterEventDelegate(GameObject p_owner);
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
-	ResourceAttribute _health;
 	bool _canUseSkill = true;
 
 	void Start() {
 		Assert.IsNotNull(_data, "There is not data attached to the character");
 
 		_events = new Dictionary<EventType, OnCharacterEventDelegate>();
-		_health = gameObject.AddComponent<ResourceAttribute>();
 
 		// Init all the data
 		AMovement movement = AMovement.AddMovement(gameObject, _data._movementType);
 
-		AttributeManager AttributeManager = GetComponent<AttributeManager>();
-		foreach (CharacterData.AttributeData data in _data._attributes) {
-			AttributeManager.AddAttribute(data.valueType, new BasicAttribute(data.baseValue, data.min, data.max));
-			//foreach (CharacterData.AttributModifierData modifier in data.AttributModifiers) {
-			//	AttributeManager.AddModifier(data.valueType, AttributeModifier.GetModifier(modifier.AttributModifierType, gameObject, modifier.modifierFactorAttributes));
-			//}
-		}
-        AttributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true, true));
-        AttributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParamT<float>(0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
+		AttributeManager attributeManager = GetComponent<AttributeManager>();
+        attributeManager.AddAttribute(AttributeType.Health, new ResourceAttribute(100, 0, 1000));
+        attributeManager.AddAttribute(AttributeType.HealthMax, new BasicAttribute(130, 0, 1000));
+		attributeManager.AddAttribute(AttributeType.HealthRegen, new BasicAttribute(1, 0, 100));
+		attributeManager.AddAttribute(AttributeType.Speed, new BasicAttribute(5, 0, 10));
+		attributeManager.AddAttribute(AttributeType.Damage, new BasicAttribute(80, 0, 1000));
+        attributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true, true));
+        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParam<float>(0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
+        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.Regen, gameObject, new RegenAttributeParam(AttributeType.HealthRegen, AttributeType.HealthMax, AttributeType.Health)));
 
-        movement.Init(AttributeManager.GetAttribute<float>(AttributeType.Speed));
-		_health.Init(AttributeManager.GetAttribute<float>(AttributeType.HealthMax), AttributeManager.GetAttribute<float>(AttributeType.HealthRegen));
+        movement.Init(attributeManager.GetAttribute<float>(AttributeType.Speed));
 	}
 
 	void Update() {
+        //Debug.Log(GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.Health).Value + "/" + GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.Health).GetValue(AttributeValueType.Max));
 		if (Input.GetKeyDown("space"))
 			TriggerEvent(EventType.OnGetDamaged, gameObject);
-	}
+
+        if (IsDead()) {
+            Die();
+        }
+    }
 
 	public void Suscribe(EventType p_eventType, OnCharacterEventDelegate p_delegate) {
 		if (p_delegate == null) {
@@ -67,16 +69,13 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	}
 
 	public virtual void GetDamage(GameObject p_owner, float p_damage) {
-		Health.Add(-p_damage);
-		TriggerEvent(EventType.OnGetDamaged, p_owner);
-		if (IsDead()) {
-			Die();
-		}
+        p_owner.GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.Health).SetValue(AttributeValueType.Add, -p_damage);
+        TriggerEvent(EventType.OnGetDamaged, p_owner);
 	}
 
 	public virtual bool IsDead() {
-		return Health.IsEmpty();
-	}
+        return GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.Health).Value <= 0f;
+    }
 
 	public virtual void Die() {
 		Debug.Log("Character is dead :(");
@@ -86,10 +85,6 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	public GameObject GetTarget() {
 		// TODO get the nearest ? target // implement a strategy to get the good target
 		return GameObject.Find("Enemy");
-	}
-
-	public ResourceAttribute Health {
-		get { return _health; }
 	}
 
 	public bool CanUseSkill {

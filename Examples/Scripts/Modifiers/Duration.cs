@@ -10,10 +10,6 @@ public class Duration : AttributeModifier {
         _endOfEffect = Time.realtimeSinceStartup + Param.duration;
     }
 
-    public override void Update(GameObject p_owner) {
-        p_owner.GetComponent<AttributeManager>().SetAttributeParam(Param);
-    }
-
     public override bool IsOver() {
         return (_endOfEffect - Time.realtimeSinceStartup) <= 0.0f;
     }

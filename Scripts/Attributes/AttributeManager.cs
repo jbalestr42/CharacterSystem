@@ -4,24 +4,16 @@ using System.Collections.Generic;
 
 public class AttributeManager : MonoBehaviour {
 	
-	public Dictionary<int, ABaseAttribute> _attributes = new Dictionary<int, ABaseAttribute>();
+	public Dictionary<int, AAttribute> _attributes = new Dictionary<int, AAttribute>();
 
 	void Update() {
         foreach (var attribute in _attributes) {
             attribute.Value.Update(gameObject);
         }
+        //Debug.Log(GetAttribute<float>(AttributeType.Speed).GetValue(AttributeValueType.RelativeBonus).ToString("F4"));
 	}
 
-	void OnGUI() {
-		GUI.Label(new Rect(10, 10, 500, 20), "Attributes : ");
-		int i = 2;
-		foreach (var attribute in _attributes) {
-			string s = attribute.Key.ToString() + " : " + attribute.Value.ToString();
-			GUI.Label(new Rect(10, 15 * i++, 500, 20), s);
-		}
-	}
-
-	public void AddAttribute(int p_attributeType, ABaseAttribute p_stat) {
+	public void AddAttribute(int p_attributeType, AAttribute p_stat) {
 		_attributes.Add(p_attributeType, p_stat);
     }
 
@@ -34,7 +26,7 @@ public class AttributeManager : MonoBehaviour {
         return null;
     }
 
-    public void SetAttributeParam(AttributeParam p_attributes) {
+    public void SetAttributeParam(BaseAttributeParam p_attributes) {
         _attributes[p_attributes.attributeType].SetAttributeParam(p_attributes);
     }
 
