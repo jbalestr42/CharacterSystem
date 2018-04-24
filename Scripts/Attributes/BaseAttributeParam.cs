@@ -1,6 +1,7 @@
 ﻿// How to put all theses variable conditionnal ? usually count dont need duration
 // How to avoid having multiple subclass for each case ?
 // maybe some kind of List of abstract type
+using UnityEngine;
 using UnityEngine.Assertions;
 
 [System.Serializable]
@@ -11,11 +12,13 @@ public class BaseAttributeParam {
     public int attributeType;
     public int attributeValueType;
     public float factor;
+    public ModifierIcon modifierIcon;
 
     public BaseAttributeParam()
-        :this(0, false, 0f, 0, 0) { }
+        :this(null, 0, false, 0f, 0, 0) { }
 
-    public BaseAttributeParam(int p_count, bool p_inverse, float p_duration, int p_attributeType, int p_attributeValueType) {
+    public BaseAttributeParam(ModifierIcon p_modifierIcon, int p_count, bool p_inverse, float p_duration, int p_attributeType, int p_attributeValueType) {
+        modifierIcon = p_modifierIcon;
         count = p_count;
         inverse = p_inverse;
         duration = p_duration;
@@ -36,10 +39,10 @@ public class AttributeParam<T> : BaseAttributeParam {
     public T value;
 
     public AttributeParam()
-        :this(0, false, 0f, default(T), 0, 0) { }
+        :this(null, 0, false, 0f, default(T), 0, 0) { }
 
-    public AttributeParam(int p_count, bool p_inverse, float p_duration, T p_value, int p_attributeType, int p_attributeValueType) 
-        :base(p_count, p_inverse, p_duration, p_attributeType, p_attributeValueType) {
+    public AttributeParam(ModifierIcon p_modifierIcon, int p_count, bool p_inverse, float p_duration, T p_value, int p_attributeType, int p_attributeValueType) 
+        :base(p_modifierIcon, p_count, p_inverse, p_duration, p_attributeType, p_attributeValueType) {
         value = p_value;
     }
 }
@@ -50,10 +53,10 @@ public class RegenAttributeParam : AttributeParam<float> {
     public int maxAttributeType;
 
     public RegenAttributeParam()
-        :this(0, 0, 0) { }
+        :this(null, 0, 0, 0) { }
 
-    public RegenAttributeParam(int p_regenAttributeType, int p_maxAttributeType, int p_attributeType) 
-        :base(0, false, 0f, 0f, p_attributeType, 0) {
+    public RegenAttributeParam(ModifierIcon p_modifierIcon, int p_regenAttributeType, int p_maxAttributeType, int p_attributeType) 
+        :base(p_modifierIcon, 0, false, 0f, 0f, p_attributeType, 0) {
         regenAttributeType = p_regenAttributeType;
         maxAttributeType = p_maxAttributeType;
     }

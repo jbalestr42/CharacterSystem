@@ -10,6 +10,11 @@ public class Duration : AttributeModifier {
         _endOfEffect = Time.realtimeSinceStartup + Param.duration;
     }
 
+    public override void Update(GameObject p_owner) {
+        base.Update(p_owner);
+        UpdateUI(GetRatio(), _endOfEffect - Time.realtimeSinceStartup);
+    }
+
     public override bool IsOver() {
         return (_endOfEffect - Time.realtimeSinceStartup) <= 0.0f;
     }

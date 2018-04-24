@@ -7,6 +7,11 @@ public class AttributeModifier {
     BaseAttributeParam _params;
 
     public virtual void OnStart(GameObject p_owner) { }
+    public virtual void UpdateUI(float p_progress, float p_duration) {
+        if (Param.modifierIcon) {
+            Param.modifierIcon.UpdateUI(p_progress, p_duration);
+        }
+    }
     public virtual void Update(GameObject p_owner) {
         Param.factor = GetFactor();
         if (Param.inverse) {
@@ -14,7 +19,11 @@ public class AttributeModifier {
         }
         p_owner.GetComponent<AttributeManager>().SetAttributeParam(Param);
     }
-    public virtual void OnEnd(GameObject p_owner) { }
+    public virtual void OnEnd(GameObject p_owner) {
+        if (Param.modifierIcon) {
+            GameObject.Destroy(Param.modifierIcon.gameObject);
+        }
+    }
     public virtual bool IsOver() { return false; }
     public virtual float GetFactor() { return 1f; }
 

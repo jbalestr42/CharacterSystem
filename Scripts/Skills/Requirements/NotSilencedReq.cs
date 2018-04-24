@@ -5,6 +5,6 @@ using UnityEngine;
 public class NotSilencedReq : IRequirement {
 
 	public bool IsValid(GameObject p_owner) {
-		return p_owner.GetComponent<Character>().CanUseSkill;
+		return p_owner.GetComponent<AttributeManager>().GetAttribute<bool>(AttributeType.CanUseSkill).Value;
 	}
 }

@@ -7,14 +7,14 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	public delegate void OnCharacterEventDelegate(GameObject p_owner);
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
+    public ModifierIconGroup _iconGroup;
     public MovementType _movementType;
-	bool _canUseSkill = true;
 
 	void Start() {
 		_events = new Dictionary<EventType, OnCharacterEventDelegate>();
 
-		// Init all the data
-		AMovement movement = AMovement.AddMovement(gameObject, _movementType);
+        // Init all the data
+        AMovement movement = AMovement.AddMovement(gameObject, _movementType);
 
 		AttributeManager attributeManager = GetComponent<AttributeManager>();
         attributeManager.AddAttribute(AttributeType.Health, new ResourceAttribute(100, 0, 1000));
@@ -23,8 +23,8 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 		attributeManager.AddAttribute(AttributeType.Speed, new BasicAttribute(5, 0, 10));
 		attributeManager.AddAttribute(AttributeType.Damage, new BasicAttribute(80, 0, 1000));
         attributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true, true));
-        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParam<float>(0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
-        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.Regen, gameObject, new RegenAttributeParam(AttributeType.HealthRegen, AttributeType.HealthMax, AttributeType.Health)));
+        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParam<float>(_iconGroup.Add(Color.green, true), 0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
+        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.Regen, gameObject, new RegenAttributeParam(_iconGroup.Add(Color.red, false), AttributeType.HealthRegen, AttributeType.HealthMax, AttributeType.Health)));
 
         movement.Init(attributeManager.GetAttribute<float>(AttributeType.Speed));
 	}
@@ -80,10 +80,5 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	public GameObject GetTarget() {
 		// TODO get the nearest ? target // implement a strategy to get the good target
 		return GameObject.Find("Enemy");
-	}
-
-	public bool CanUseSkill {
-		get { return _canUseSkill; }
-		set { _canUseSkill = value; }
 	}
 }

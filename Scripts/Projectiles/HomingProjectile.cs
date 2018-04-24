@@ -24,7 +24,7 @@ public class HomingProjectile : AProjectile {
 
                 // TODO apply the onhit effect from the owner to the target
                 // And the damage is a onhit effect
-                var attribute = new AttributeParam<float>(0, false, 3f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus);
+                var attribute = new AttributeParam<float>(p_owner._iconGroup.Add(Color.yellow, true), 0, false, 3f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus);
                 var modifier = AttributeModifier.GetModifier(AttributModifierType.DurationRatio, p_collider.gameObject, attribute);
                 p_collider.gameObject.GetComponent<AttributeManager>().AddModifier(modifier);
             }
