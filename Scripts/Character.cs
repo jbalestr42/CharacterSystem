@@ -8,6 +8,7 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 	Dictionary<EventType, OnCharacterEventDelegate> _events;
 
     public ModifierIconGroup _iconGroup;
+    public ModifierIconGroup _skillGroup;
     public MovementType _movementType;
 
 	void Start() {
