@@ -5,7 +5,7 @@ public abstract class AMovement : MonoBehaviour {
 
     Attribute<float> _speed;
 
-	void Update() {
+	void LateUpdate() {
 		UpdateMovement();
 	}
 

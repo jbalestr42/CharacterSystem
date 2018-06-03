@@ -49,16 +49,22 @@ public abstract class ASkill : MonoBehaviour {
 	}
 
 	bool IsRequirementValidated() {
-		foreach (var requirement in _requirements) {
-			if (!requirement.IsValid(gameObject)) {
-				return false;
-			}
-		}
+        if (_requirements != null) {
+            foreach (var requirement in _requirements) {
+                if (!requirement.IsValid(gameObject)) {
+                    return false;
+                }
+            }
+        }
 		return true;
 	}
 
     float GetCooldownRatio() {
         return _cooldown / _cooldownDuration;
+    }
+
+    public Character Owner {
+        get { return _owner; }
     }
 
 	public abstract void Cast(Character p_owner);
