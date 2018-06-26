@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Regen : AttributeModifier {
+public class Resource : AttributeModifier {
 
     Attribute<float> _regen;
     Attribute<float> _max;
@@ -10,7 +10,7 @@ public class Regen : AttributeModifier {
     float _timer = 0f;
 
     public override void OnStart(GameObject p_owner) {
-        var p = (RegenAttributeParam)Param;
+        var p = (ResourceAttributeParam)Param;
         _regen = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(p.regenAttributeType);
         _max = p_owner.GetComponent<AttributeManager>().GetAttribute<float>(p.maxAttributeType);
     }
@@ -19,7 +19,7 @@ public class Regen : AttributeModifier {
         _timer += Time.deltaTime;
         if (_timer >= _regenRate) {
             _timer -= _regenRate;
-            var p = BaseAttributeParam.Cast<RegenAttributeParam>(Param);
+            var p = BaseAttributeParam.Cast<ResourceAttributeParam>(Param);
             p.value = _regen.Value;
             p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Param.attributeType).SetValue(AttributeValueType.Add, _regen.Value);
             p_owner.GetComponent<AttributeManager>().GetAttribute<float>(Param.attributeType).SetValue(AttributeValueType.Max, _max.Value);

@@ -48,14 +48,14 @@ public class AttributeParam<T> : BaseAttributeParam {
 }
 
 [System.Serializable]
-public class RegenAttributeParam : AttributeParam<float> {
+public class ResourceAttributeParam : AttributeParam<float> {
     public int regenAttributeType;
     public int maxAttributeType;
 
-    public RegenAttributeParam()
+    public ResourceAttributeParam()
         :this(null, 0, 0, 0) { }
 
-    public RegenAttributeParam(ModifierIcon p_modifierIcon, int p_regenAttributeType, int p_maxAttributeType, int p_attributeType) 
+    public ResourceAttributeParam(ModifierIcon p_modifierIcon, int p_regenAttributeType, int p_maxAttributeType, int p_attributeType) 
         :base(p_modifierIcon, 0, false, 0f, 0f, p_attributeType, 0) {
         regenAttributeType = p_regenAttributeType;
         maxAttributeType = p_maxAttributeType;

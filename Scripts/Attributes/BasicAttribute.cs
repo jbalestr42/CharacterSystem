@@ -7,7 +7,7 @@ public class BasicAttribute : Attribute<float> {
     float _total = 0f;
 
     public BasicAttribute(float p_value, float p_min, float p_max)
-        :base(p_value, p_value) {
+        :base(p_value) {
         SetValue(AttributeValueType.AbsoluteBonus, 0f);
         SetValue(AttributeValueType.RelativeBonus, 0f);
         SetValue(AttributeValueType.Min, p_min);

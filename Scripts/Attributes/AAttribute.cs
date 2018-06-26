@@ -74,7 +74,7 @@ public abstract class AAttribute {
     /// </summary>
     /// <typeparam name="T">The destination type</typeparam>
     /// <param name="p_value">The value to downcast</param>
-    /// <returns></returns>
+    /// <returns>The casted value</returns>
     public static T Cast<T>(AAttribute p_value) where T : AAttribute {
         T value = (T)p_value;
         Assert.IsNotNull(value);

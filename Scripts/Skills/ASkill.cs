@@ -4,11 +4,10 @@ using UnityEngine;
 
 public abstract class ASkill : MonoBehaviour {
 
-    ModifierIcon _icon = null;
+    // TODO Can be a list in case of multiple item want the cooldown ?
+    ISkillCooldownUpdater _cooldownUpdater = null;
 
 	List<IRequirement> _requirements;
-
-	Character _owner;
 
 	float _castTimer = 0.0f;
 	float _castDuration = 0.0f;
@@ -16,19 +15,15 @@ public abstract class ASkill : MonoBehaviour {
 	float _cooldownDuration = 0.0f;
 	float _cooldown = 0.0f;
 
-	void Awake() {
-		//_owner = GetComponent<Character>();
-        //_icon = _owner._skillGroup.Add(Color.cyan, true);
-	}
-
-	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements) {
+	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements, ISkillCooldownUpdater p_cooldownUpdater) {
 		_castDuration = p_castDuration;
 		_cooldownDuration = p_cooldownDuration;
 		_requirements = p_requirements;
-	}
+        _cooldownUpdater = p_cooldownUpdater;
+    }
 
 	// TODO update cast bar
-	// prevent owner to cast multiple skills 
+	// prevent owner to cast multiple skills here ? or may be not our problem here ?
 	void Update() {
         if (_cooldown <= 0.0f) {
             if (IsRequirementValidated()) {
@@ -44,8 +39,8 @@ public abstract class ASkill : MonoBehaviour {
             }
         } else {
             _cooldown = Mathf.Clamp(_cooldown - Time.deltaTime, 0.0f, _cooldownDuration);
-            if (_icon != null) {
-                _icon.UpdateUI(GetCooldownRatio(), _cooldown);
+            if (_cooldownUpdater != null) {
+                _cooldownUpdater.UpdateCooldown(GetCooldownRatio(), _cooldown);
             }
         }
 	}
@@ -65,9 +60,5 @@ public abstract class ASkill : MonoBehaviour {
         return _cooldown / _cooldownDuration;
     }
 
-    public Character Owner {
-        get { return _owner; }
-    }
-
-	public abstract void Cast(GameObject p_owner);
+    public abstract void Cast(GameObject p_owner);
 }

@@ -13,12 +13,12 @@ public class Attribute<T> : AAttribute {
     T _value;
 
     public Attribute()
-        :this(default(T), default(T)) { }
+        :this(default(T)) { }
 
-    public Attribute(T p_value, T p_defaultValue) {
+    public Attribute(T p_value) {
         _values = new Dictionary<int, T>();
         SetValue(AttributeValueType.Base, p_value);
-        SetValue(AttributeValueType.Default, p_defaultValue);
+        SetValue(AttributeValueType.Default, p_value);
     }
 
     public T GetValue(int p_type) {

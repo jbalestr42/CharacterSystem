@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifierIcon : MonoBehaviour {
+public class ModifierIcon : MonoBehaviour, ISkillCooldownUpdater {
 
     UnityEngine.UI.Image _root;
     UnityEngine.UI.Image _overlay;
@@ -20,7 +20,7 @@ public class ModifierIcon : MonoBehaviour {
         EnableTimer(p_showDuration);
     }
 
-    public void UpdateUI(float p_progress, float p_duration) {
+    public void UpdateCooldown(float p_progress, float p_duration) {
         _text.text = p_duration.ToString("F1");
         _overlay.fillAmount = p_progress;
         if (p_progress <= 0f) {

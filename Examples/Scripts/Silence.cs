@@ -13,7 +13,7 @@ public class Silence : ASkill {
 		var requirement = new List<IRequirement>();
 		requirement.Add(new InputReq("tab"));
 		// TODO ligne de vision entre le joueur et la cible ?
-		base.Init(0.1f, 5.0f, requirement);
+		base.Init(0.1f, 5.0f, requirement, GetComponent<Character>()._skillGroup.Add(Color.cyan, true));
 	}
 
 	public override void Cast(GameObject p_owner) {

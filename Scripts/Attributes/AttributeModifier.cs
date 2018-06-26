@@ -9,7 +9,7 @@ public class AttributeModifier {
     public virtual void OnStart(GameObject p_owner) { }
     public virtual void UpdateUI(float p_progress, float p_duration) {
         if (Param.modifierIcon) {
-            Param.modifierIcon.UpdateUI(p_progress, p_duration);
+            Param.modifierIcon.UpdateCooldown(p_progress, p_duration);
         }
     }
     public virtual void Update(GameObject p_owner) {
@@ -35,8 +35,8 @@ public class AttributeModifier {
 	public static AttributeModifier GetModifier(AttributModifierType p_modifierType, GameObject p_owner, BaseAttributeParam p_param) {
 		AttributeModifier modifierFactor = null;
 		switch (p_modifierType) {
-		    case AttributModifierType.Regen:
-			    modifierFactor = new Regen();
+		    case AttributModifierType.Resource:
+			    modifierFactor = new Resource();
 			    break;
 
             case AttributModifierType.DurationRatio:

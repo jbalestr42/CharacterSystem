@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ResourceAttribute : Attribute<float> {
 
     public ResourceAttribute(float p_value, float p_min, float p_max)
-        : base(p_value, p_value) {
+        : base(p_value) {
         SetValue(AttributeValueType.Add, 0f);
         SetValue(AttributeValueType.Min, p_min);
         SetValue(AttributeValueType.Max, p_max);

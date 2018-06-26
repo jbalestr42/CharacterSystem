@@ -23,7 +23,7 @@ public class AttributeType {
 }
 
 public enum AttributModifierType {
-    Regen,
+    Resource,
 	DurationRatio,
     Duration
 }
