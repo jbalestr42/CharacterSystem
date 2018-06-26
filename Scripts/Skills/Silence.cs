@@ -16,8 +16,8 @@ public class Silence : ASkill {
 		base.Init(0.1f, 5.0f, requirement);
 	}
 
-	public override void Cast(Character p_owner) {
-		GameObject target = p_owner.GetTarget();
+	public override void Cast(GameObject p_owner) {
+		GameObject target = p_owner.GetComponent<Character>().GetTarget();
 
         AttributeParam<bool> attribute = new AttributeParam<bool>();
         attribute.value = false;

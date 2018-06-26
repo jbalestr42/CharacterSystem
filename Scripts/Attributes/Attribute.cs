@@ -1,8 +1,15 @@
 ﻿using System.Collections.Generic;
 
+/*
+ * Generic attribute class
+ * Allow to create an attribute for a specify type
+ * */
 public class Attribute<T> : AAttribute {
 
+    /// The values needed by the attribute to compute a final value
     Dictionary<int, T> _values;
+
+    /// The computed final value
     T _value;
 
     public Attribute()

@@ -17,6 +17,9 @@ public class AttributeType {
     public static int CooldownReduction = 5;
     public static int CanUseSkill = 6;
     public static int Health = 7;
+    public static int AttackRate = 8;
+    public static int Range = 9;
+    public static int Money = 10;
 }
 
 public enum AttributModifierType {

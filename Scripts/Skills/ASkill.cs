@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ASkill : MonoBehaviour {
 
-    ModifierIcon _icon;
+    ModifierIcon _icon = null;
 
 	List<IRequirement> _requirements;
 
@@ -17,8 +17,8 @@ public abstract class ASkill : MonoBehaviour {
 	float _cooldown = 0.0f;
 
 	void Awake() {
-		_owner = GetComponent<Character>();
-        _icon = _owner._skillGroup.Add(Color.cyan, true);
+		//_owner = GetComponent<Character>();
+        //_icon = _owner._skillGroup.Add(Color.cyan, true);
 	}
 
 	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements) {
@@ -30,22 +30,24 @@ public abstract class ASkill : MonoBehaviour {
 	// TODO update cast bar
 	// prevent owner to cast multiple skills 
 	void Update() {
-		if (_cooldown <= 0.0f) {
-			if (IsRequirementValidated()) {
-				_castTimer -= Time.deltaTime;
-				if (_castTimer <= 0.0f) {
-					Debug.Log("Cast new spell");
-					Cast(_owner);
-					_castTimer = _castDuration;
-					_cooldown = _cooldownDuration;
-				}
-			} else {
-				_castTimer = _castDuration;
-			}
-		} else {
-			_cooldown = Mathf.Clamp(_cooldown - Time.deltaTime, 0.0f, _cooldownDuration);
-            _icon.UpdateUI(GetCooldownRatio(), _cooldown);
-		}
+        if (_cooldown <= 0.0f) {
+            if (IsRequirementValidated()) {
+                _castTimer -= Time.deltaTime;
+                if (_castTimer <= 0.0f) {
+                    Debug.Log("Cast new spell");
+                    Cast(gameObject);
+                    _castTimer = _castDuration;
+                    _cooldown = _cooldownDuration;
+                }
+            } else {
+                _castTimer = _castDuration;
+            }
+        } else {
+            _cooldown = Mathf.Clamp(_cooldown - Time.deltaTime, 0.0f, _cooldownDuration);
+            if (_icon != null) {
+                _icon.UpdateUI(GetCooldownRatio(), _cooldown);
+            }
+        }
 	}
 
 	bool IsRequirementValidated() {
@@ -67,5 +69,5 @@ public abstract class ASkill : MonoBehaviour {
         get { return _owner; }
     }
 
-	public abstract void Cast(Character p_owner);
+	public abstract void Cast(GameObject p_owner);
 }

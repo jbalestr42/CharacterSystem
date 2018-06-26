@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotProjectileIA : ASkill {
+public class ShotProjectileTower : ASkill {
 
 	public GameObject _bullet;
 
 	void Start() {
         var requirement = new List<IRequirement>();
-        requirement.Add(new VisionReq(Owner.gameObject, GameObject.Find("Character")));
-        base.Init(0.1f, 2.0f, requirement);
-	}
+        requirement.Add(new ValidTargetReq(gameObject));
+        Attribute<float> rate = GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.AttackRate);
+        base.Init(0.1f, rate.Value, requirement);
+    }
 
 	public override void Cast(GameObject p_owner) {
 		GameObject bullet = Instantiate(_bullet, p_owner.transform.position, p_owner.transform.rotation);

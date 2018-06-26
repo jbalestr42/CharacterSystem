@@ -4,21 +4,25 @@ using UnityEngine;
 
 public abstract class AProjectile : MonoBehaviour {
 
-	Character _owner;
+    GameObject _owner;
 
 	void Update() {
 		UpdateMovement(_owner);
 	}
 
-	public virtual void Init(Character p_owner) {
+	public virtual void Init(GameObject p_owner) {
 		_owner = p_owner;
-	}
+    }
 
-	void OnTriggerEnter2D(Collider2D p_collider) {
-		Debug.Log("Trigger");
-		OnHit(_owner, p_collider);
-	}
+    void OnTriggerEnter2D(Collider2D p_collider) {
+        OnHit(_owner, p_collider);
+    }
 
-	public abstract void OnHit(Character p_owner, Collider2D p_collider);
-	public abstract void UpdateMovement(Character p_owner);
+    void OnCollisionEnter(Collision p_collider) {
+        OnHit(_owner, p_collider);
+    }
+
+    public virtual void OnHit(GameObject p_owner, Collider2D p_collider) { }
+    public virtual void OnHit(GameObject p_owner, Collision p_collider) { }
+    public abstract void UpdateMovement(GameObject p_owner);
 }

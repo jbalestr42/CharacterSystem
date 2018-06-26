@@ -14,6 +14,7 @@ public class AttributeManager : MonoBehaviour {
 
 	public void AddAttribute(int p_attributeType, AAttribute p_stat) {
 		_attributes.Add(p_attributeType, p_stat);
+        p_stat.Update(gameObject);
     }
 
     public Attribute<T> GetAttribute<T>(int p_type) {
