@@ -12,7 +12,15 @@ public class Duration : AttributeModifier {
 
     public override void Update(GameObject p_owner) {
         base.Update(p_owner);
-        UpdateUI(GetRatio(), _endOfEffect - Time.realtimeSinceStartup);
+        if (Param.modifierIcon != null) {
+            Param.modifierIcon.UpdateCooldown(GetRatio(), _endOfEffect - Time.realtimeSinceStartup);
+        }
+    }
+
+    public override void OnEnd(GameObject p_owner) {
+        if (Param.modifierIcon != null) {
+            Param.modifierIcon.OnEnd();
+        }
     }
 
     public override bool IsOver() {

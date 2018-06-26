@@ -30,6 +30,10 @@ public class ModifierIcon : MonoBehaviour, ISkillCooldownUpdater {
         }
     }
 
+    public void OnEnd() {
+        Destroy(gameObject);
+    }
+
     public void EnableTimer(bool p_enable) {
         if (_showDuration) {
             _overlay.enabled = p_enable;

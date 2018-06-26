@@ -6,20 +6,18 @@ using UnityEngine.Assertions;
 
 [System.Serializable]
 public class BaseAttributeParam {
-    public int count;
     public bool inverse;
     public float duration;
     public int attributeType;
     public int attributeValueType;
     public float factor;
-    public ModifierIcon modifierIcon;
+    public ISkillCooldownUpdater modifierIcon;
 
     public BaseAttributeParam()
-        :this(null, 0, false, 0f, 0, 0) { }
+        :this(null, false, 0f, 0, 0) { }
 
-    public BaseAttributeParam(ModifierIcon p_modifierIcon, int p_count, bool p_inverse, float p_duration, int p_attributeType, int p_attributeValueType) {
+    public BaseAttributeParam(ISkillCooldownUpdater p_modifierIcon, bool p_inverse, float p_duration, int p_attributeType, int p_attributeValueType) {
         modifierIcon = p_modifierIcon;
-        count = p_count;
         inverse = p_inverse;
         duration = p_duration;
         attributeType = p_attributeType;
@@ -39,10 +37,10 @@ public class AttributeParam<T> : BaseAttributeParam {
     public T value;
 
     public AttributeParam()
-        :this(null, 0, false, 0f, default(T), 0, 0) { }
+        :this(null, false, 0f, default(T), 0, 0) { }
 
-    public AttributeParam(ModifierIcon p_modifierIcon, int p_count, bool p_inverse, float p_duration, T p_value, int p_attributeType, int p_attributeValueType) 
-        :base(p_modifierIcon, p_count, p_inverse, p_duration, p_attributeType, p_attributeValueType) {
+    public AttributeParam(ISkillCooldownUpdater p_modifierIcon, bool p_inverse, float p_duration, T p_value, int p_attributeType, int p_attributeValueType) 
+        :base(p_modifierIcon, p_inverse, p_duration, p_attributeType, p_attributeValueType) {
         value = p_value;
     }
 }
@@ -55,8 +53,8 @@ public class ResourceAttributeParam : AttributeParam<float> {
     public ResourceAttributeParam()
         :this(null, 0, 0, 0) { }
 
-    public ResourceAttributeParam(ModifierIcon p_modifierIcon, int p_regenAttributeType, int p_maxAttributeType, int p_attributeType) 
-        :base(p_modifierIcon, 0, false, 0f, 0f, p_attributeType, 0) {
+    public ResourceAttributeParam(ISkillCooldownUpdater p_modifierIcon, int p_regenAttributeType, int p_maxAttributeType, int p_attributeType) 
+        :base(p_modifierIcon, false, 0f, 0f, p_attributeType, 0) {
         regenAttributeType = p_regenAttributeType;
         maxAttributeType = p_maxAttributeType;
     }

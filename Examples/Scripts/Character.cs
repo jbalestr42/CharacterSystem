@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, IKillable, ICharacterObservable {
 		attributeManager.AddAttribute(AttributeType.Speed, new BasicAttribute(5, 0, 10));
 		attributeManager.AddAttribute(AttributeType.Damage, new BasicAttribute(80, 0, 1000));
         attributeManager.AddAttribute(AttributeType.CanUseSkill, new Attribute<bool>(true));
-        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParam<float>(_iconGroup.Add(Color.green, true), 0, false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
+        attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.DurationRatio, gameObject, new AttributeParam<float>(_iconGroup.Add(Color.green, true), false, 10f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus)));
         attributeManager.AddModifier(AttributeModifier.GetModifier(AttributModifierType.Resource, gameObject, new ResourceAttributeParam(_iconGroup.Add(Color.red, false), AttributeType.HealthRegen, AttributeType.HealthMax, AttributeType.Health)));
 
         movement.Init(attributeManager.GetAttribute<float>(AttributeType.Speed));
