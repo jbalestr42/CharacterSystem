@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Duration : AttributeModifier {
+public class Duration : AttributeModifier<BaseAttributeParam> {
 
     protected float _endOfEffect;
 

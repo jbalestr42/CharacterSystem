@@ -26,7 +26,7 @@ public class SimpleProjectile : AProjectile {
 				chara.GetDamage(p_owner, _damage + p_owner.GetComponent<AttributeManager>().GetAttribute<float>(AttributeType.Damage).Value);
 
                 var attribute = new AttributeParam<float>(p_collider.gameObject.GetComponent<Character>()._iconGroup.Add(Color.yellow, true), false, 3f, -1f, AttributeType.Speed, AttributeValueType.RelativeBonus);
-                var modifier = AttributeModifier.GetModifier(AttributModifierType.DurationRatio, p_collider.gameObject, attribute);
+                var modifier = Factory.GetModifier(AttributModifierType.DurationRatio, p_collider.gameObject, attribute);
                 p_collider.gameObject.GetComponent<AttributeManager>().AddModifier(modifier);
             }
 			Destroy(gameObject);

@@ -11,10 +11,10 @@ using UnityEngine;
 public abstract class AAttribute {
 
     /// The list of attributes modifier
-    private List<AttributeModifier> _modifiers;
+    private List<IAttributeModifier> _modifiers;
 
     public AAttribute() {
-        _modifiers = new List<AttributeModifier>();
+        _modifiers = new List<IAttributeModifier>();
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public abstract class AAttribute {
     /// Add a modifier to this attribute
     /// </summary>
     /// <param name="p_attributeeModifier">The new modifier</param>
-    public void AddModifier(AttributeModifier p_attributeeModifier) {
+    public void AddModifier(IAttributeModifier p_attributeeModifier) {
         _modifiers.Add(p_attributeeModifier);
     }
 
@@ -65,7 +65,7 @@ public abstract class AAttribute {
     /// Remove a modifier to this attribute
     /// </summary>
     /// <param name="p_attributeeModifier">The modifier to remove</param>
-    public void RemoveModifier(AttributeModifier p_attributeeModifier) {
+    public void RemoveModifier(IAttributeModifier p_attributeeModifier) {
         _modifiers.Remove(p_attributeeModifier);
     }
 
@@ -77,7 +77,7 @@ public abstract class AAttribute {
     /// <returns>The casted value</returns>
     public static T Cast<T>(AAttribute p_value) where T : AAttribute {
         T value = (T)p_value;
-        Assert.IsNotNull(value);
+        Assert.IsNotNull(value); // TODO Add error message
         return value;
     }
 }

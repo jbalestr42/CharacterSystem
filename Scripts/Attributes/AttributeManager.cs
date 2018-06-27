@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/*
+ * Contains all the attributes, provide helper methods to add and remove modifiers
+ * */
 public class AttributeManager : MonoBehaviour {
 	
 	public Dictionary<int, AAttribute> _attributes = new Dictionary<int, AAttribute>();
@@ -29,15 +32,15 @@ public class AttributeManager : MonoBehaviour {
         _attributes[p_attributes.attributeType].SetAttributeParam(p_attributes);
     }
 
-    public void AddModifier(AttributeModifier p_attributeModifier) {
-        if (_attributes.ContainsKey(p_attributeModifier.Param.attributeType)) {
-            _attributes[p_attributeModifier.Param.attributeType].AddModifier(p_attributeModifier);
+    public void AddModifier(IAttributeModifier p_attributeModifier) {
+        if (_attributes.ContainsKey(p_attributeModifier.GetAttributeType())) {
+            _attributes[p_attributeModifier.GetAttributeType()].AddModifier(p_attributeModifier);
         }
     }
 
-    public void RemoveModifier(AttributeModifier p_stateModifier) {
-        if (_attributes.ContainsKey(p_stateModifier.Param.attributeType)) {
-            _attributes[p_stateModifier.Param.attributeType].RemoveModifier(p_stateModifier);
+    public void RemoveModifier(IAttributeModifier p_stateModifier) {
+        if (_attributes.ContainsKey(p_stateModifier.GetAttributeType())) {
+            _attributes[p_stateModifier.GetAttributeType()].RemoveModifier(p_stateModifier);
         }
     }
 }
