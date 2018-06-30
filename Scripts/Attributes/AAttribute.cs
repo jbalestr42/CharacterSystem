@@ -6,7 +6,6 @@ using UnityEngine;
 /// <summary>
 /// The abstract class to manage an attribute
 /// An attribute is a value that can be modified by AttributeModifiers in real time
-/// It can contains multiple values that help compute a final value based on the modifiers at each frame
 /// </summary>
 public abstract class AAttribute {
 
@@ -28,30 +27,24 @@ public abstract class AAttribute {
     }
 
     /// <summary>
-    /// This method is called after applying the modifiers
-    /// Compute the final value
-    /// </summary>
-    public abstract void AfterModifierUpdate();
-
-    /// <summary>
-    /// Set an AttributeParam, an attribute param is a value that help computing the final value
-    /// </summary>
-    /// <param name="p"></param>
-    public abstract void SetAttributeParam(BaseAttributeParam p);
-
-    /// <summary>
-    /// Update the modifiers
+    /// Apply the modifiers
     /// </summary>
     /// <param name="p_owner">The owner of the AAttribute</param>
     void UpdateModifier(GameObject p_owner) {
         for (int i = _modifiers.Count - 1; i >= 0; i--) {
-            _modifiers[i].Update(p_owner);
+            _modifiers[i].ApplyModifier(p_owner, this);
             if (_modifiers[i].IsOver()) {
                 _modifiers[i].OnEnd(p_owner);
                 _modifiers.RemoveAt(i);
             }
         }
     }
+
+    /// <summary>
+    /// This method is called after applying the modifiers
+    /// It's used to do special computation once the modifiers are applyed
+    /// </summary>
+    public abstract void AfterModifierUpdate();
 
     /// <summary>
     /// Add a modifier to this attribute
@@ -62,7 +55,7 @@ public abstract class AAttribute {
     }
 
     /// <summary>
-    /// Remove a modifier to this attribute
+    /// Remove a modifier from this attribute
     /// </summary>
     /// <param name="p_attributeeModifier">The modifier to remove</param>
     public void RemoveModifier(IAttributeModifier p_attributeeModifier) {

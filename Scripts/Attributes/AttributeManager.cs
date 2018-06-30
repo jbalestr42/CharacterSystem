@@ -28,10 +28,6 @@ public class AttributeManager : MonoBehaviour {
         return null;
     }
 
-    public void SetAttributeParam(BaseAttributeParam p_attributes) {
-        _attributes[p_attributes.attributeType].SetAttributeParam(p_attributes);
-    }
-
     public void AddModifier(IAttributeModifier p_attributeModifier) {
         if (_attributes.ContainsKey(p_attributeModifier.GetAttributeType())) {
             _attributes[p_attributeModifier.GetAttributeType()].AddModifier(p_attributeModifier);

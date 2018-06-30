@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ASkill : MonoBehaviour {
 
     // TODO Can be a list in case of multiple item want the cooldown ?
-    ISkillCooldownUpdater _cooldownUpdater = null;
+    ISkillCooldownTracker _cooldownUpdater = null;
 
 	List<IRequirement> _requirements;
 
@@ -15,7 +15,7 @@ public abstract class ASkill : MonoBehaviour {
 	float _cooldownDuration = 0.0f;
 	float _cooldown = 0.0f;
 
-	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements, ISkillCooldownUpdater p_cooldownUpdater) {
+	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements, ISkillCooldownTracker p_cooldownUpdater) {
 		_castDuration = p_castDuration;
 		_cooldownDuration = p_cooldownDuration;
 		_requirements = p_requirements;
