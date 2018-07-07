@@ -26,12 +26,6 @@ public interface IAttributeModifier {
     bool IsOver();
 
     /// <summary>
-    /// Return the computed factor
-    /// </summary>
-    /// <returns></returns>
-    float GetFactor();
-
-    /// <summary>
     /// Set the attribute param
     /// </summary>
     /// <param name="p_params"></param>

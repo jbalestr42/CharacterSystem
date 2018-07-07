@@ -8,10 +8,6 @@ public abstract class AAttributeModifier<T, U> : IAttributeModifier where T : Ba
     public virtual void OnStart(GameObject p_owner) { }
 
     public void ApplyModifier(GameObject p_owner, AAttribute p_attribute) {
-        Param.factor = GetFactor();
-        if (Param.inverse) {
-            Param.factor = 1f - Param.factor;
-        }
         //TODOD assert
         U attribute = (U)p_attribute;
         Assert.IsNotNull(attribute);
@@ -25,10 +21,6 @@ public abstract class AAttributeModifier<T, U> : IAttributeModifier where T : Ba
 
     public virtual bool IsOver() {
         return false;
-    }
-
-    public virtual float GetFactor() {
-        return 1f;
     }
 
     public void SetAttributeParam(BaseAttributeParam p_params) {

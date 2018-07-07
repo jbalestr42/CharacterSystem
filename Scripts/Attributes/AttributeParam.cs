@@ -6,10 +6,10 @@ public class AttributeParam<T> : BaseAttributeParam {
     public T value;
 
     public AttributeParam()
-        :this(null, false, 0f, default(T), 0, 0) { }
+        :this(null, false, default(T), 0, 0) { }
 
-    public AttributeParam(ISkillCooldownTracker p_modifierIcon, bool p_inverse, float p_duration, T p_value, int p_attributeType, int p_attributeValueType) 
-        :base(p_modifierIcon, p_inverse, p_duration, p_attributeType, p_attributeValueType) {
+    public AttributeParam(ISkillCooldownTracker p_modifierIcon, bool p_inverse, T p_value, int p_attributeType, int p_attributeValueType) 
+        :base(p_modifierIcon, p_inverse, p_attributeType, p_attributeValueType) {
         value = p_value;
     }
 }
