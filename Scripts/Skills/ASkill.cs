@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ASkill : MonoBehaviour {
 
     // TODO Can be a list in case of multiple item want the cooldown ?
-    ISkillCooldownTracker _cooldownUpdater = null;
+    IProgressTracker _progressTracker = null;
 
 	List<IRequirement> _requirements;
 
@@ -15,11 +15,11 @@ public abstract class ASkill : MonoBehaviour {
 	float _cooldownDuration = 0.0f;
 	float _cooldown = 0.0f;
 
-	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements, ISkillCooldownTracker p_cooldownUpdater) {
+	protected void Init(float p_castDuration, float p_cooldownDuration, List<IRequirement> p_requirements, IProgressTracker p_progressTracker) {
 		_castDuration = p_castDuration;
 		_cooldownDuration = p_cooldownDuration;
 		_requirements = p_requirements;
-        _cooldownUpdater = p_cooldownUpdater;
+        _progressTracker = p_progressTracker;
     }
 
 	// TODO update cast bar
@@ -39,8 +39,8 @@ public abstract class ASkill : MonoBehaviour {
             }
         } else {
             _cooldown = Mathf.Clamp(_cooldown - Time.deltaTime, 0.0f, _cooldownDuration);
-            if (_cooldownUpdater != null) {
-                _cooldownUpdater.UpdateCooldown(GetCooldownRatio(), _cooldown);
+            if (_progressTracker != null) {
+                _progressTracker.UpdateProgress(GetCooldownRatio(), _cooldown);
             }
         }
 	}
