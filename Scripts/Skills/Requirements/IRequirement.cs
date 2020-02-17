@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public interface IRequirement {
-	bool IsValid(GameObject p_owner);
+public interface IRequirement
+{
+    bool IsValid(GameObject p_owner);
 }

@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Interface to manage an attribute modifier
 /// </summary>
-public interface IAttributeModifier {
-
+public interface IAttributeModifier
+{
     /// <summary>
     /// Called once the attribute modifier is added
     /// </summary>
