@@ -23,7 +23,8 @@ public abstract class ASkill : MonoBehaviour
     }
 
     // TODO update cast bar
-    // prevent owner to cast multiple skills here ? or may be not our problem here ?
+    // prevent owner to cast multiple skills here ? or may be not our problem here ? Do it with Requirement and Attribute<bool> IsCasting
+    // The ASkill could use the attribute manager to use a cooldown modifier attribute, casting time modifier attribute, IsCasting attribute, CanCast attribute, etc.
     void Update()
     {
         if (_cooldown <= 0.0f)

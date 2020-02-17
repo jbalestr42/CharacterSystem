@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Generic attribute class
@@ -8,10 +9,14 @@
 /// </summary>
 public class Attribute<T> : AAttribute
 {
+	public delegate void OnValueChangedDelegate(Attribute<T> p_attribute);
+    
+    public OnValueChangedDelegate OnValueChanged = null;
+
     /// The values needed by the attribute to compute the final value
     Dictionary<int, T> _values = new Dictionary<int, T>();
 
-    /// The final value once the modifier are applyed
+    /// The final value once modifiers are applyed
     T _value;
 
     public Attribute()
@@ -21,6 +26,40 @@ public class Attribute<T> : AAttribute
     {
         SetValue(AttributeValueType.Base, p_value);
         SetValue(AttributeValueType.Default, p_value);
+    }
+    
+    /// <summary>
+    /// Called each frame, this method usually don?t need to be override
+    /// Update the attribute values based on the modifiers and compute the final value
+    /// </summary>
+    /// <param name="p_owner"></param>
+    public override void Update(GameObject p_owner)
+    {
+        T value = Value;
+        base.Update(p_owner);
+
+        if (ShouldTriggerEvent() && !IsEqual(value) && OnValueChanged != null)
+        {
+            OnValueChanged.Invoke(this);
+        }
+    }
+    
+    /// <summary>
+    /// Determine whether events should be triggered or not
+    /// </summary>
+    public virtual bool ShouldTriggerEvent()
+    {
+        return true;
+    }
+    
+    /// <summary>
+    /// Compare the given value with the current Value
+    /// </summary>
+    /// <param name="p_value">The value to compare with the current value</param>
+    /// <returns>Return true if values are equal</returns>
+    public virtual bool IsEqual(T p_value)
+    {
+        return p_value.Equals(Value);
     }
 
     /// <summary>
