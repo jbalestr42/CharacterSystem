@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 
 /// <summary>
 /// Contains all the attributes, provide helper methods to add and remove modifiers
@@ -25,6 +25,8 @@ public class AttributeManager : MonoBehaviour
 
     public Attribute<T> GetAttribute<T>(int p_type)
     {
+        Assert.IsNotNull(_attributes[p_type]);
+
         Attribute<T> attribute = AAttribute.Cast<Attribute<T>>(_attributes[p_type]);
         if (attribute != null)
         {
