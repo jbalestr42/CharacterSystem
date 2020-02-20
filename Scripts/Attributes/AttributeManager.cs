@@ -11,7 +11,7 @@ public class AttributeManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var attribute in _attributes)
+        foreach (KeyValuePair<int, AAttribute> attribute in _attributes)
         {
             attribute.Value.Update(gameObject);
         }
@@ -19,15 +19,17 @@ public class AttributeManager : MonoBehaviour
 
     public void AddAttribute(int p_attributeType, AAttribute p_stat)
     {
+        Assert.IsFalse(_attributes.ContainsKey(p_attributeType), "Key already exists: " + p_attributeType);
+
         _attributes.Add(p_attributeType, p_stat);
         p_stat.Update(gameObject);
     }
 
-    public Attribute<T> GetAttribute<T>(int p_type)
+    public Attribute<T> GetAttribute<T>(int p_attributeType)
     {
-        Assert.IsNotNull(_attributes[p_type]);
+        Assert.IsTrue(_attributes.ContainsKey(p_attributeType), "Key doesn't exists: " + p_attributeType);
 
-        Attribute<T> attribute = AAttribute.Cast<Attribute<T>>(_attributes[p_type]);
+        Attribute<T> attribute = AAttribute.Cast<Attribute<T>>(_attributes[p_attributeType]);
         if (attribute != null)
         {
             return attribute;
