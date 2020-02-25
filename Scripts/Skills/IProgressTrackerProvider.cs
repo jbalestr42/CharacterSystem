@@ -1,4 +1,6 @@
-﻿public interface IProgressTrackerProvider
+﻿using UnityEngine;
+
+public interface IProgressTrackerProvider
 {
-    IProgressTracker CreateTracker();
+    GameObject CreateTracker();
 }

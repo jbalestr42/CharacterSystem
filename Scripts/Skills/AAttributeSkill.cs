@@ -1,19 +1,17 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class AAttributeSkill : ASkill
 {
-    Attribute<float> _castDuration = null;
-    public override float CastDuration { get { return _castDuration == null ? 0f : _castDuration.Value; } }
+    public Attribute<float> CastDurationAtt = null;
+    public override float CastDuration { get { return CastDurationAtt == null ? 0f : CastDurationAtt.Value; } }
 
-    Attribute<float> _cooldownDuration = null;
-    public override float CooldownDuration { get { return _cooldownDuration == null ? 0f : _cooldownDuration.Value; } }
+    public Attribute<float> CooldownDurationAtt = null;
+    public override float CooldownDuration { get { return CooldownDurationAtt == null ? 0f : CooldownDurationAtt.Value; } }
 
-    protected void Init(Attribute<float> p_castDuration, Attribute<float> p_cooldownDuration, List<IRequirement> p_requirements, IProgressTracker p_progressTracker)
+    protected AAttributeSkill(GameObject p_owner, Attribute<float> p_castDuration, Attribute<float> p_cooldownDuration)
+        :base(p_owner, 0f, 0f)
     {
-        _castDuration = p_castDuration;
-        _cooldownDuration = p_cooldownDuration;
-
-        base.Init(CastDuration, CooldownDuration, p_requirements, p_progressTracker);
+        CastDurationAtt = p_castDuration;
+        CooldownDurationAtt = p_cooldownDuration;
     }
 }

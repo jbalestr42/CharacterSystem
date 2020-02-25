@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 /// <summary>
 /// Contains all the attributes, provide helper methods to add and remove modifiers
 /// </summary>
+[DisallowMultipleComponent]
 public class AttributeManager : MonoBehaviour
 {
     public Dictionary<int, AAttribute> _attributes = new Dictionary<int, AAttribute>();
