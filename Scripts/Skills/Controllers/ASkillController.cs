@@ -5,7 +5,6 @@ public abstract class ASkillController : MonoBehaviour
     public ASkill Skill { get; set; } = null;
     public IProgressTracker ProgressTracker { get; set; } = null;
 
-    float _castTimer = 0.0f; // TODO remove castTimer
     float _cooldownTimer = 0.0f;
 
     void Update()
@@ -16,17 +15,9 @@ public abstract class ASkillController : MonoBehaviour
             {
                 if (Skill.AreRequirementsValidated() && CanCast(Skill.Owner))
                 {
-                    _castTimer -= Time.deltaTime;
-                    if (_castTimer <= 0.0f)
-                    {
-                        Debug.Log("Cast new spell");
-                        Skill.Cast(Skill.Owner);
-                        AfterSkillCast();
-                    }
-                }
-                else
-                {
-                    _castTimer = Skill.CastDuration;
+                    Debug.Log("Cast new spell");
+                    Skill.Cast(Skill.Owner);
+                    AfterSkillCast();
                 }
             }
             else
@@ -47,7 +38,6 @@ public abstract class ASkillController : MonoBehaviour
 
     public virtual void AfterSkillCast()
     {
-        _castTimer = Skill.CastDuration;
         _cooldownTimer = Skill.CooldownDuration;
     }
 
