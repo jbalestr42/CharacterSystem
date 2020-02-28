@@ -2,15 +2,10 @@
 
 public abstract class ASkillController : MonoBehaviour
 {
-    // Faire l'inverse, le skill controlleur doit avoir une reference vers un ASkill pour pouvoir changer de skill facilement
-    // Le Contrlleur gère aussi le cooldown et les duration
-    // 2ventuellement plusieurs skill
-    // InputReq est une mauvaise idée
-
     public ASkill Skill { get; set; } = null;
     public IProgressTracker ProgressTracker { get; set; } = null;
 
-    float _castTimer = 0.0f;
+    float _castTimer = 0.0f; // TODO remove castTimer
     float _cooldownTimer = 0.0f;
 
     void Update()
@@ -26,8 +21,7 @@ public abstract class ASkillController : MonoBehaviour
                     {
                         Debug.Log("Cast new spell");
                         Skill.Cast(Skill.Owner);
-                        _castTimer = Skill.CastDuration;
-                        _cooldownTimer = Skill.CooldownDuration;
+                        AfterSkillCast();
                     }
                 }
                 else
@@ -49,6 +43,12 @@ public abstract class ASkillController : MonoBehaviour
     float GetCooldownRatio()
     {
         return _cooldownTimer / Skill.CooldownDuration;
+    }
+
+    public virtual void AfterSkillCast()
+    {
+        _castTimer = Skill.CastDuration;
+        _cooldownTimer = Skill.CooldownDuration;
     }
 
     public abstract bool CanCast(GameObject p_owner);

@@ -15,7 +15,7 @@ public abstract class ASkill
         Owner = p_owner;
     }
 
-    public bool AreRequirementsValidated()
+    public virtual bool AreRequirementsValidated()
     {
         if (Requirements != null)
         {
@@ -31,4 +31,6 @@ public abstract class ASkill
     }
 
     public abstract void Cast(GameObject p_owner);
+
+    // TODO isSkillTerminated to reset the colldown
 }
