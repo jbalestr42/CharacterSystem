@@ -11,7 +11,7 @@ public class Attribute<T> : AAttribute
 {
 	public delegate void OnValueChangedDelegate(Attribute<T> p_attribute);
     
-    public OnValueChangedDelegate OnValueChanged = null;
+    OnValueChangedDelegate OnValueChanged = null;
 
     /// The values needed by the attribute to compute the final value
     Dictionary<int, T> _values = new Dictionary<int, T>();
@@ -98,5 +98,22 @@ public class Attribute<T> : AAttribute
     public virtual T Value
     {
         get { return _value; }
+    }
+    
+    /// <summary>
+    /// Add a delegate to the event OnValueChanged and call the delegate instantly
+    /// </summary>
+    public void AddOnValueChangedDelegate(OnValueChangedDelegate onValueChangedDelegate)
+    {
+        OnValueChanged += onValueChangedDelegate;
+        onValueChangedDelegate.Invoke(this);
+    }
+    
+    /// <summary>
+    /// Remove a delegate from the event OnValueChanged
+    /// </summary>
+    public void RemoveOnValueChangedDelegate(OnValueChangedDelegate onValueChangedDelegate)
+    {
+        OnValueChanged -= onValueChangedDelegate;
     }
 }
