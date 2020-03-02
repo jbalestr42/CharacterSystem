@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IProgressTrackerProvider
+public interface IProgressTrackerProvider<T>
 {
-    GameObject CreateTracker();
+    GameObject CreateTracker(T p_trackerData);
 }
